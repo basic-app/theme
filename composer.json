@@ -1,0 +1,12 @@
+{
+    "name": "basic-app/theme",
+    "autoload": {
+        "psr-4": {
+            "BasicApp\\Theme\\": ""
+        }
+    },
+    "require": {
+        "basic-app/core" : "dev-master",
+        "phptheme/core" : "dev-master"    
+    }
+}
