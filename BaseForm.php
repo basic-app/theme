@@ -9,10 +9,14 @@ use PhpTheme\Helpers\Html;
 use BasicApp\Helpers\ArrayHelper;
 use BasicApp\Traits\FactoryTrait;
 
-abstract class BaseThemeForm extends \BasicApp\Core\Form
+abstract class BaseForm extends \BasicApp\Core\Form
 {
 
     use FactoryTrait;
+
+    protected $imagePreviewClass = FormImagePreview::class;
+
+    protected $filePreviewClass = FormFilePreview::class;
 
     public $model = null;
 
@@ -26,7 +30,7 @@ abstract class BaseThemeForm extends \BasicApp\Core\Form
 
     public $groupTemplate = '{label}{input}';
 
-    public $defaultGroupOptions = ['class' => 'form-group'];
+    public $defaultGroupOptions = [];
 
     public $defaultLabelOptions = [];
 
@@ -50,9 +54,21 @@ abstract class BaseThemeForm extends \BasicApp\Core\Form
 
     public $defaultResetOptions = [];
 
-    public $defaultErrorOptions = ['class' => 'alert alert-danger', 'role' => 'alert'];
+    public $defaultErrorOptions = ['class' => 'error'];
 
-    public $defaultMessageOptions = ['class' => 'alert alert-info', 'role' => 'alert'];
+    public $defaultMessageOptions = ['class' => 'info'];
+
+    public $defaultEditorTextareaOptions = ['class' => 'editor'];
+
+    public $defaultCodeTextareaOptions = ['class' => 'code'];    
+
+    public $defaultImagePreviewOptions = [];
+
+    public $defaultFilePreviewOptions = [];    
+
+    public $defaultImageUploadOptions = [];
+
+    public $defaultFileUploadOptions = [];
 
     public function group($attribute, $input, $options = [])
     {
@@ -151,7 +167,7 @@ abstract class BaseThemeForm extends \BasicApp\Core\Form
 
     public function checkbox($attribute, array $options = [], $groupOptions = [])
     {
-        $options = Html::mergeOptions($this->defaultUncheckOptions, $options);
+        $options = Html::mergeOptions($this->defaultCheckboxOptions, $options);
 
         $options = $this->addErrorClass($attribute, $options);
 
@@ -361,5 +377,57 @@ abstract class BaseThemeForm extends \BasicApp\Core\Form
 
         return $options;
     }   
+
+    public function imagePreview(array $options)
+    {
+        $options = Html::mergeOptions($this->defaultImagePreviewOptions, $options);
+
+        return $this->theme->widget($this->imagePreviewClass, $options);
+    }
+
+    public function filePreview(array $options)
+    {
+        $options = Html::mergeOptions($this->defaultFilePreviewOptions, $options);
+
+        return $this->theme->widget($this->filePreviewClass, $options);
+    }
+
+    public function editorTextarea($attribute, array $options = [], $groupOptions = [])
+    {
+        $options = Html::mergeOptions($this->defaultEditorTextareaOptions, $options);
+
+        return $this->textarea($attribute, $options, $groupOptions);
+    }
+
+    public function codeTextarea($attribute, array $options = [], $groupOptions = [])
+    {
+        $options = Html::mergeOptions($this->defaultCodeTextareaOptions, $options);
+
+        return $this->textarea($attribute, $options, $groupOptions);
+    }
+
+    public function imageUpload($attribute, $filename = null, array $options = [], $groupOptions = [])
+    {
+        $options = Html::mergeOptions($this->defaultImageUploadOptions, $options);
+
+        if (!array_key_exists('suffix', $groupOptions))
+        {
+            $groupOptions['suffix'] = $this->imagePreview(['url' => $filename]);
+        }
+
+        return $this->upload($attribute, $options, $groupOptions);
+    }
+
+    public function fileUpload($attribute, $filename = null, array $options = [], $groupOptions = [])
+    {
+        $options = Html::mergeOptions($this->defaultFileUploadOptions, $options);
+
+        if (!array_key_exists('suffix', $groupOptions))
+        {
+            $groupOptions['suffix'] = $this->filePreview(['url' => $filename]);
+        }
+
+        return $this->upload($attribute, $options, $groupOptions);
+    }    
 
 }

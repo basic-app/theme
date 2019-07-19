@@ -5,6 +5,6 @@
  */
 namespace BasicApp\Theme;
 
-class ThemeForm extends BaseThemeForm
+class Form extends BaseForm
 {
 }
