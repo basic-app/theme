@@ -13,13 +13,13 @@ use BasicApp\Theme\Form;
 abstract class ThemeAbstract
 {
 
-    public $postButtonClass = PostButton::class;
+    protected $postButtonClass = PostButton::class;
 
-    public $defaultPostButtonOptions = [];
+    protected $defaultPostButtonOptions = [];
 
-    public $formClass = Form::class;
+    protected $formClass = Form::class;
 
-    public $defaultFormOptions = [];
+    protected $defaultFormOptions = [];
 
     public function __construct()
     {
