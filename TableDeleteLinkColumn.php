@@ -3,6 +3,7 @@
 namespace BasicApp\Theme;
 
 use PhpTheme\Helpers\Html;
+use BasicApp\Helpers\Url;
 
 class TableDeleteLinkColumn extends \PhpTheme\Html\TableColumn
 {
@@ -20,6 +21,10 @@ class TableDeleteLinkColumn extends \PhpTheme\Html\TableColumn
     public $confirmMessage;
 
     public $params = [];
+
+    public $action;
+
+    public $urlParams = [];
 
     public function renderContent()
     {
@@ -66,6 +71,28 @@ class TableDeleteLinkColumn extends \PhpTheme\Html\TableColumn
         $this->theme->endBody .= $popup;
 
         $linkOptions = $this->linkOptions;
+
+        if ($this->action)
+        {
+            $urlParams = $this->urlParams;
+
+            $pk = $this->row->getPrimaryKey();
+
+            if (is_array($pk))
+            {
+                $urlParams = array_merge($urlParams, $pk);
+            }
+            else
+            {
+                $urlParams['id'] = $pk;
+            }
+
+            $linkOptions['href'] = Url::returnUrl($this->action, $urlParams);
+        }
+        else
+        {
+            $linkOptions['href'] = $this->url;
+        }        
 
         $linkOptions['data-target'] = '#' . $id;
 
