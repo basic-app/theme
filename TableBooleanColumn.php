@@ -4,7 +4,7 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Helpers\Html;
 
-class TableBooleanColumn extends \PhpTheme\Html\TableColumn
+class TableBooleanColumn extends \PhpTheme\Bootstrap4\TableColumn
 {
 
     public $yes;

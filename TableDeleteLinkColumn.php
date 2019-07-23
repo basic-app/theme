@@ -5,7 +5,7 @@ namespace BasicApp\Theme;
 use PhpTheme\Helpers\Html;
 use BasicApp\Helpers\Url;
 
-class TableDeleteLinkColumn extends \PhpTheme\Html\TableColumn
+class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 {
 
     public $id;

@@ -4,7 +4,7 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Helpers\Html;
 
-class TableLinkColumn extends \PhpTheme\Html\TableColumn
+class TableLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 {
 
     public $url;

@@ -5,7 +5,7 @@ namespace BasicApp\Theme;
 use PhpTheme\Helpers\Html;
 use BasicApp\Helpers\Url;
 
-class TableUpdateLinkColumn extends \PhpTheme\Html\TableColumn
+class TableUpdateLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 {
 
     public $label;
