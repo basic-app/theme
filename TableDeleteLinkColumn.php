@@ -42,14 +42,35 @@ class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
             $label = t('theme', 'Delete');
         }
 
-        $url = $this->url;
+        if ($this->url)
+        {
+            $url = $this->url;
+        }
+        elseif($this->action)
+        {
+            $urlParams = $this->urlParams;
+
+            $pk = $this->row->getPrimaryKey();
+
+            if (is_array($pk))
+            {
+                $urlParams = array_merge($urlParams, $pk);
+            }
+            else
+            {
+                $urlParams['id'] = $pk;
+            }
+
+            $url = Url::returnUrl($this->action, $urlParams);
+        }
 
         $deleteButton = $this->theme->postButton([
             'tag' => 'button',
             'content' => $label,
             'options' => [
                 'type' => 'submit',
-                'class' => 'btn btn-primary'
+                'class' => 'btn btn-primary',
+                'name' => 'delete'
             ],
             'url' => $url
         ]);
@@ -71,28 +92,6 @@ class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
         $this->theme->endBody .= $popup;
 
         $linkOptions = $this->linkOptions;
-
-        if ($this->action)
-        {
-            $urlParams = $this->urlParams;
-
-            $pk = $this->row->getPrimaryKey();
-
-            if (is_array($pk))
-            {
-                $urlParams = array_merge($urlParams, $pk);
-            }
-            else
-            {
-                $urlParams['id'] = $pk;
-            }
-
-            $linkOptions['href'] = Url::returnUrl($this->action, $urlParams);
-        }
-        else
-        {
-            $linkOptions['href'] = $this->url;
-        }        
 
         $linkOptions['data-target'] = '#' . $id;
 
