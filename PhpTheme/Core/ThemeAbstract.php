@@ -13,13 +13,11 @@ use BasicApp\Theme\Form;
 abstract class ThemeAbstract
 {
 
-    protected $postButtonClass = PostButton::class;
+    const FORM = Form::class;
 
-    protected $defaultPostButtonOptions = [];
+    const POST_BUTTON = PostButton::class;
 
-    protected $formClass = Form::class;
-
-    protected $defaultFormOptions = [];
+    protected $postButtonOptions = [];
 
     public function __construct()
     {
@@ -27,16 +25,18 @@ abstract class ThemeAbstract
 
     public function postButton(array $options = [])
     {
-        $options = Html::mergeOptions($this->defaultPostButtonOptions, $options);
+        $options = Html::mergeOptions($this->postButtonOptions, $options);
 
-        return $this->widget($this->postButtonClass, $options);
+        return $this->widget(static::POST_BUTTON, $options);
     }
 
-    public function createForm(array $options = [])
+    public function createForm($model, array $errors = [])
     {
-        $options = Html::mergeOptions($this->defaultFormOptions, $options);
+        $class = static::FORM;
 
-        return $this->createWidget($this->formClass, $options);
+        $form = new $class($model, $errors);
+
+        return $form;
     }
 
 }

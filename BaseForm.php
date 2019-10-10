@@ -12,6 +12,7 @@ use BasicApp\Traits\FactoryTrait;
 abstract class BaseForm extends \BasicApp\Core\Form
 {
 
+    /*
     use FactoryTrait;
 
     protected $imagePreviewClass = FormImagePreview::class;
@@ -69,6 +70,10 @@ abstract class BaseForm extends \BasicApp\Core\Form
     public $defaultImageUploadOptions = [];
 
     public $defaultFileUploadOptions = [];
+
+    */
+
+    /*
 
     public function group($attribute, $input, $options = [])
     {
@@ -231,8 +236,11 @@ abstract class BaseForm extends \BasicApp\Core\Form
 
         return $this->group($attribute, $return, $groupOptions);
     }
+    */
 
     // errors and buttons
+
+    /*
 
     public function submit($label, array $options = [])
     {
@@ -429,5 +437,131 @@ abstract class BaseForm extends \BasicApp\Core\Form
 
         return $this->upload($attribute, $options, $groupOptions);
     }    
+
+    */
+
+
+
+    /*
+
+    public function generateId($field)
+    {
+        $class = get_class($this->_model);
+
+        $segments = explode("\\", $class);
+
+        $segments = array_reverse($segments);
+
+        $first = array_shift($segments);
+
+        $return = $first . '-' . $field;
+
+        $return = strtolower($return);
+
+        return $return;
+    }
+
+    public function renderContainer(string $field, string $input, array $options = []) : string
+    {
+        $options['label'] = $this->getLabel($field);
+
+        $options['error'] = $this->getError($field);
+
+        $options['input'] = $input;
+
+        if (!array_key_exists('labelOptions', $options))
+        {
+            $options['labelOptions'] = [];
+        }
+
+        return view($this->containerTemplate, $options, ['saveData' => false]);
+    }
+
+    */
+
+    /*
+
+    public function getLabel(string $field)
+    {
+        if (method_exists($this->_model, 'getFieldLabel'))
+        {
+            return $this->_model->getFieldLabel($field);
+        }
+
+        $rules = $this->_model->getValidationRules();
+
+        if (array_key_exists($field, $rules))
+        {
+            if (is_array($rules[$field]) && array_key_exists('label', $rules[$field]))
+            {
+                return $rules[$field]['label'];
+            }
+        }
+
+        return $field;
+    }
+
+    */
+
+    /*
+
+
+    public function input($data, string $field, array $options = [], array $containerOptions = []) : string
+    {
+        return $this->renderContainer(
+            $field, 
+            form_input($field, $this->getValue($data, $field), $options), 
+            $containerOptions
+        );
+    }
+
+    public function password($data, string $field, array $options = [], array $containerOptions = []) : string
+    {
+        return $this->renderContainer(
+            $field, 
+            form_password($field, $this->getValue($data, $field), $options), 
+            $containerOptions
+        );
+    }
+
+    public function textarea($data, string $field, array $options = [], array $containerOptions = []) : string
+    {
+        return $this->renderContainer(
+            $field, 
+            form_textarea($field, $this->getValue($data, $field), $options),
+            $containerOptions
+        );
+    }
+
+    public function checkbox($data, string $field, array $options = [], array $containerOptions = []) : string
+    {
+        if (empty($options['id']))
+        {
+            $options['id'] = $this->generateId($field);
+        }
+
+        if (empty($containerOptions['labelOptions']['for']))
+        {
+            $containerOptions['labelOptions']['for'] = $options['id'];
+        }
+
+        $content = '<br>';
+
+        $content .= form_hidden($field, 0);
+
+        $content .= form_checkbox($field, 1, $this->getValue($data, $field) ? true : false, $options);
+
+        return $this->renderContainer(
+            $field, 
+            $content,
+            $containerOptions
+        );
+    }
+
+
+
+    */
+
+
 
 }
