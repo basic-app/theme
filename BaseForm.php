@@ -503,6 +503,13 @@ abstract class BaseForm extends \BasicApp\Core\Form
 
     */
 
+    protected function _getFieldLabel($data, $field)
+    {
+        $modelClass = get_class($this->_model);
+
+        return $modelClass::fieldLabel($field, parent::_getFieldLabel($data, $field));
+    }
+
     /*
 
 
