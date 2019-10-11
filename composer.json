@@ -1,18 +1,18 @@
 {
     "name": "basic-app/theme",
     "autoload": {
-        "exclude-from-classmap": ["/PhpTheme/"],
         "psr-4": {
             "BasicApp\\Theme\\": ""
         },
         "files": [
-            "PhpTheme/Core/ThemeAbstract.php",
-            "PhpTheme/Html/TableAbstract.php",
-            "PhpTheme/Html/TableColumnAbstract.php"
+            "_autoload/ThemeAbstract.php",
+            "_autoload/TableColumnAbstract.php",
+            "_autoload/TableAbstract.php",
         ]
     },
     "require": {
         "basic-app/core" : "dev-master",
-        "phptheme/core" : "dev-master"    
+        "phptheme/core" : "dev-master",
+        "phptheme/html": "dev-master"
     }
 }

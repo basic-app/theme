@@ -4,7 +4,7 @@
  * @link http://getphptheme.com
  * @license MIT License
  */
-namespace PhpTheme\Html;
+namespace BasicApp\Theme;
 
 use PhpTheme\Helpers\Html;
 
