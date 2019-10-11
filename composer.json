@@ -7,7 +7,7 @@
         "files": [
             "_autoload/ThemeAbstract.php",
             "_autoload/TableColumnAbstract.php",
-            "_autoload/TableAbstract.php",
+            "_autoload/TableAbstract.php"
         ]
     },
     "require": {
