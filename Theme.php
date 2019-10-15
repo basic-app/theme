@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) 2018-2019 BasicApp Dev Team
- * @link http://getphptheme.com
- * @license MIT License
+ * @author Basic App Dev Team
+ * @license MIT
+ * @link http://basic-app.com
  */
 namespace BasicApp\Theme;
 
@@ -19,9 +19,17 @@ abstract class Theme
 
     const POST_BUTTON = PostButton::class;
 
+    const IMAGE_PREVIEW = FormImagePreview::class;
+
+    const FILE_PREVIEW = FormFilePreview::class;
+
     public $postButtonAttributes = [];
 
     public $pagerAttributes = [];
+
+    public $imagePreviewAttributes = [];
+
+    public $filePreviewAttributes = [];
 
     public function __construct()
     {
@@ -40,7 +48,7 @@ abstract class Theme
     {
         $class = static::FORM;
 
-        $form = new $class($model, $errors);
+        $form = new $class($model, $errors, $this);
 
         return $form;
     }
@@ -50,6 +58,20 @@ abstract class Theme
         $attributes = HtmlHelper::mergeAttributes($this->pagerAttributes, $attributes);
 
         return $this->widget(static::PAGER, $attributes);
+    }
+
+    public function imagePreview(array $attributes = [])
+    {
+        $attributes = HtmlHelper::mergeAttributes($this->imagePreviewAttributes, $attributes);
+
+        return $this->widget(static::IMAGE_PREVIEW, $attributes);
+    }
+
+    public function filePreview(array $attributes = [])
+    {
+        $attributes = HtmlHelper::mergeAttributes($this->filePreviewAttributes, $attributes);
+
+        return $this->widget(static::FILE_PREVIEW, $attributes);
     }
 
 }

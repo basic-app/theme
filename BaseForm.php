@@ -1,7 +1,8 @@
 <?php
 /**
+ * @author Basic App Dev Team
+ * @license MIT
  * @link http://basic-app.com
- * @license MIT License
  */
 namespace BasicApp\Theme;
 
@@ -15,6 +16,26 @@ abstract class BaseForm extends \BasicApp\Core\Form
     public $editorTextareaAttributes = ['class' => 'form-control editor'];
 
     public $codeTextareaAttributes = ['class' => 'form-control code'];
+
+    public $uploadImageAttributes = [];
+
+    public $uploadFileAttributes = [];
+
+    protected $_theme;
+
+    public function __construct($model, $errors, $theme)
+    {
+        parent::__construct($model, $errors);
+
+        $this->_theme = $theme;
+    }
+
+    protected function _getFieldLabel($data, $field)
+    {
+        $modelClass = get_class($this->_model);
+
+        return $modelClass::fieldLabel($field, parent::_getFieldLabel($data, $field));
+    }
 
     public function editorTextarea($data, $name, array $attributes = [])
     {
@@ -44,157 +65,42 @@ abstract class BaseForm extends \BasicApp\Core\Form
         return $this->textareaGroup($data, $name, $atributes, $groupAttributes);
     }
 
-    /*
-    use FactoryTrait;
-
-    protected $imagePreviewClass = FormImagePreview::class;
-
-    protected $filePreviewClass = FormFilePreview::class;
-
-    public $model = null;
-
-    public $errors = [];
-
-    public $messages = [];
-
-
-    public $groupErrorClass;
-
-    public $groupTemplate = '{label}{input}';
-
-    public $defaultGroupOptions = [];
-
-    public $defaultLabelOptions = [];
-
-    public $defaultInputOptions = [];
-
-    public $defaultTextareaOptions = [];
-
-    public $defaultPasswordOptions = [];
-
-    public $defaultCheckboxOptions = [];
-
-    public $defaultDropdownOptions = [];
-
-    public $defaultMultiselectOptions = [];
-
-    public $defaultUploadOptions = [];
-
-    public $defaultSubmitOptions = [];
-
-    public $defaultButtonOptions = [];
-
-    public $defaultResetOptions = [];
-
-    public $defaultErrorOptions = ['class' => 'error'];
-
-    public $defaultMessageOptions = ['class' => 'info'];
-
-
-    public $defaultImagePreviewOptions = [];
-
-    public $defaultFilePreviewOptions = [];    
-
-    public $defaultImageUploadOptions = [];
-
-    public $defaultFileUploadOptions = [];
-
-    */
-
-    // errors and buttons
-
-    /*
-
-
-
-
-
-
-
-    public function imagePreview(array $options)
+    public function uploadImage($data, $attribute, $filename = null, array $options = [])
     {
-        $options = Html::mergeOptions($this->defaultImagePreviewOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->uploadImageAttributes, $options);
 
-        return $this->theme->widget($this->imagePreviewClass, $options);
+        return $this->upload($data, $attribute, $options, $groupOptions);
     }
 
-    public function filePreview(array $options)
+    public function uploadImageGroup($data, $attribute, $filename = null, array $options = [], $groupOptions = [])
     {
-        $options = Html::mergeOptions($this->defaultFilePreviewOptions, $options);
-
-        return $this->theme->widget($this->filePreviewClass, $options);
-    }
-
-    public function imageUpload($attribute, $filename = null, array $options = [], $groupOptions = [])
-    {
-        $options = Html::mergeOptions($this->defaultImageUploadOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->uploadImageAttributes, $options);
 
         if (!array_key_exists('suffix', $groupOptions))
         {
-            $groupOptions['suffix'] = $this->imagePreview(['url' => $filename]);
+            $groupOptions['suffix'] = $this->_theme->imagePreview(['url' => $filename]);
         }
 
-        return $this->upload($attribute, $options, $groupOptions);
-    }
-
-    public function fileUpload($attribute, $filename = null, array $options = [], $groupOptions = [])
-    {
-        $options = Html::mergeOptions($this->defaultFileUploadOptions, $options);
-
-        if (!array_key_exists('suffix', $groupOptions))
-        {
-            $groupOptions['suffix'] = $this->filePreview(['url' => $filename]);
-        }
-
-        return $this->upload($attribute, $options, $groupOptions);
+        return $this->uploadGroup($data, $attribute, $options, $groupOptions);
     }    
 
-    */
-
-
-
-    /*
-
-    public function generateId($field)
+    public function uploadFile($data, $attribute, $filename = null, array $options = [])
     {
-        $class = get_class($this->_model);
+        $options = HtmlHelper::mergeAttributes($this->uploadFileAttributes, $options);
 
-        $segments = explode("\\", $class);
-
-        $segments = array_reverse($segments);
-
-        $first = array_shift($segments);
-
-        $return = $first . '-' . $field;
-
-        $return = strtolower($return);
-
-        return $return;
+        return $this->upload($data, $attribute, $options);
     }
 
-    public function renderContainer(string $field, string $input, array $options = []) : string
+    public function uploadFileGroup($data, $attribute, $filename = null, array $options = [], $groupOptions = [])
     {
-        $options['label'] = $this->getLabel($field);
+        $options = HtmlHelper::mergeAttributes($this->uploadFileAttributes, $options);
 
-        $options['error'] = $this->getError($field);
-
-        $options['input'] = $input;
-
-        if (!array_key_exists('labelOptions', $options))
+        if (!array_key_exists('suffix', $groupOptions))
         {
-            $options['labelOptions'] = [];
+            $groupOptions['suffix'] = $this->_theme->filePreview(['url' => $filename]);
         }
 
-        return view($this->containerTemplate, $options, ['saveData' => false]);
-    }
-
-    */
-
-    protected function _getFieldLabel($data, $field)
-    {
-        $modelClass = get_class($this->_model);
-
-        return $modelClass::fieldLabel($field, parent::_getFieldLabel($data, $field));
+        return $this->uploadGroup($data, $attribute, $options, $groupOptions);
     }
 
 }
