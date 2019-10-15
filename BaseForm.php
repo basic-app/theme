@@ -62,7 +62,7 @@ abstract class BaseForm extends \BasicApp\Core\Form
     {
         $attributes = HtmlHelper::mergeAttributes($this->codeTextareaAttributes, $attributes);
 
-        return $this->textareaGroup($data, $name, $atributes, $groupAttributes);
+        return $this->textareaGroup($data, $name, $attributes, $groupAttributes);
     }
 
     public function uploadImage($data, $attribute, $filename = null, array $options = [])
