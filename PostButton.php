@@ -15,9 +15,9 @@ class PostButton extends \PhpTheme\Html\Tag
 
     public $url;
 
-    public function run()
+    public function render()
     {
-        $content = parent::run();
+        $content = parent::render();
 
         $formOptions = $this->formOptions;
 
@@ -26,6 +26,11 @@ class PostButton extends \PhpTheme\Html\Tag
         $formOptions['action'] = $this->url;
 
         return HtmlHelper::tag('form', $content, $formOptions);
+    }
+
+    public function run()
+    {
+        return $this->render();
     }
 
 }

@@ -8,7 +8,7 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Html\HtmlHelper;
 
-class TableLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
+class TableLinkColumn extends TableColumn
 {
 
     public $url;
@@ -21,7 +21,7 @@ class TableLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 
     public $params = [];
 
-    public function renderContent()
+    public function getContent()
     {
         $label = $this->label;
 

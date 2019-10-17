@@ -29,7 +29,11 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public $columns;
 
-    public $defaultLinkColumnOptions = [
+    public $headerColumnOptions = [];
+
+    public $footerColumnOptions = [];
+
+    public $defaultLinkColumn = [
         'headerOptions' => [
             'style' => [
                 'width' => '1%'           
@@ -37,7 +41,7 @@ class Table extends \PhpTheme\Html\BaseTable
         ]
     ];
 
-    public $defaultBooleanColumnOptions = [
+    public $defaultBooleanColumn = [
         'headerOptions' => [
             'style' => [
                 'width' => '1%'  
@@ -45,7 +49,7 @@ class Table extends \PhpTheme\Html\BaseTable
         ]
     ];
 
-    public $defaultUpdateLinkColumnOptions = [
+    public $defaultUpdateLinkColumn = [
        'options' => [
             'style' => [
                 'padding' => '0px 12px',
@@ -61,7 +65,7 @@ class Table extends \PhpTheme\Html\BaseTable
         ]
     ];
 
-    public $defaultDeleteLinkColumnOptions = [
+    public $defaultDeleteLinkColumn = [
         'options' => [
             'style' => [
                 'padding' => '0px 20px',
@@ -79,28 +83,28 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public function createBooleanColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumn, $options);
 
         return $this->theme->createWidget(static::BOOLEAN_LINK_COLUMN, $options);
     }
 
     public function createUpdateLinkColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultUpdateLinkColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultUpdateLinkColumn, $options);
 
         return $this->theme->createWidget(static::UPDATE_LINK_COLUMN, $options);
     }
 
     public function createDeleteLinkColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultDeleteLinkColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultDeleteLinkColumn, $options);
 
         return $this->theme->createWidget(static::DELETE_LINK_COLUMN, $options);
     }
 
     public function createLinkColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultLinkColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultLinkColumn, $options);
 
         return $this->theme->createWidget(static::LINK_COLUMN, $options);
     }    
@@ -112,11 +116,27 @@ class Table extends \PhpTheme\Html\BaseTable
             $params['rows'][] = ['columns' => $this->labels];
         }
 
-        return parent::createHeader($params);
+        $return = parent::createHeader($params);
+
+        /*
+
+        foreach($this->headerColumnOptions as $key => $options)
+        {
+            foreach($return->rows as $k => $v)
+            {
+                $column = $v->columns[$key];
+
+                $column->options = Html::mergeAttributes($column->options, $options);
+            }
+        }
+
+        */
+
+        return $return;
     }
 
     public function createBody(array $params = [])
-    {
+    {   
         if ($this->data)
         {
             foreach($this->data as $data)
@@ -127,16 +147,26 @@ class Table extends \PhpTheme\Html\BaseTable
 
                 $columns = $columnFunction($data);
 
-                foreach($columns as $key => $value)
+                foreach($columns as $key => $column)
                 {
-                    $value->data = $data;
+                    $column->data = $data;
+
+                    if (!array_key_exists($key, $this->headerColumnOptions) && $column->headerOptions)
+                    {
+                        $this->headerColumnOptions[$key] = $column->headerOptions;
+                    }
+
+                    if (!array_key_exists($key, $this->footerColumnOptions) && $column->footerOptions)
+                    {
+                        $this->footerColumnOptions[$key] = $column->footerOptions;
+                    }
                 }
 
-                $params['body']['rows'][] = ['columns' => $columns];
+                $params['rows'][] = ['columns' => $columns];
             }
         }
 
-        return parent::createHeader($params);
+        return parent::createBody($params);
     }
 
 }

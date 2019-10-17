@@ -9,7 +9,7 @@ namespace BasicApp\Theme;
 use PhpTheme\Html\HtmlHelper;
 use BasicApp\Helpers\Url;
 
-class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
+class TableDeleteLinkColumn extends TableColumn
 {
 
     public $id;
@@ -30,13 +30,13 @@ class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 
     public $urlParams = [];
 
-    public function renderContent()
+    public function getContent()
     {
         $id = $this->id;
 
         if (!$id)
         {
-            $id = 'delete-popup-' . $this->row->getPrimaryKey();
+            $id = 'delete-popup-' . $this->data->getPrimaryKey();
         }
 
         $label = $this->label;
@@ -54,7 +54,7 @@ class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
         {
             $urlParams = $this->urlParams;
 
-            $pk = $this->row->getPrimaryKey();
+            $pk = $this->data->getPrimaryKey();
 
             if (is_array($pk))
             {

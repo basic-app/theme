@@ -11,9 +11,17 @@ use PhpTheme\Html\HtmlHelper;
 class TableColumn extends \PhpTheme\Html\BaseTableColumn
 {
 
-    public $globalOptions = [];
+    public $data = [];
 
-    public $defaultNumberOptions = [
+    public $attribute;
+
+    public $footerOptions = [];
+
+    public $headerOptions = [];
+
+    public $number = [];
+
+    public $defaultNumber = [
         'style' => [
             'text-align' => 'right',
             'width' => '1%'
@@ -22,115 +30,41 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public function number($options = [])
     {
-        $this->options = HtmlHelper::mergeAttributes($this->options, $this->defaultNumberOptions);
-
-        $this->options = HtmlHelper::mergeAttributes($this->options, $options);
+        $this->options = HtmlHelper::mergeAttributes($this->number, $this->defaultNumber, $options);
 
         return $this;
     }
 
-    public function getHeader()
+    public function getContent()
     {
-        if ($this->attribute && $this->row)
+        if ($this->content)
         {
-            return $this->row->label($this->attribute);
+            return $this->content;
+        }
+
+        if ($this->data && $this->attribute)
+        {
+            $data = $this->data;
+
+            if (is_object($data))
+            {
+                if (method_exists($data, 'toArray'))
+                {
+                    $data = $data->toArray();
+                }
+                else
+                {
+                    return $data->{$this->attribute};
+                }
+            }
+
+            if (array_key_exists($this->attribute, $data))
+            {
+                return $data[$this->attribute];
+            }
         }
 
         return null;
     }
-
-    /*
-
-    public $row = [];
-
-    public $options = [];
-
-    public $defaultOptions = [];
-
-    public $header = null;
-
-    public $defaultHeaderOptions = [];
-
-    public $headerTag = 'th';
-
-    public $headerOptions = [];
-
-    public $footer = null;
-
-    public $footerTag = 'td';
-
-    public $defaultFooterOptions = [];
-
-    public $footerOptions = [];
-
-    public $attribute;
-
-    public function getAttributeValue()
-    {
-        if (is_object($this->row))
-        {
-            return $this->row->{$this->attribute};
-        }
-        else
-        {
-            return $this->row[$this->attribute];
-        }        
-    }
-
-    public function renderAttribute()
-    {
-        $return = parent::renderAttribute();
-
-        if ($return !== null)
-        {
-            return $return;
-        }
-
-        $return = $this->getAttributeValue();
-
-        return $return;
-    }
-
-    public function renderContent()
-    {
-        $return = parent::renderContent();
-
-        if ($return !== null)
-        {
-            return $return;
-        }
-
-        $content = $this->content;
-
-        if ($content instanceof Closure)
-        {
-            return $content($this->row);
-        }
-
-        if ($content !== null)
-        {
-            return $content;
-        }
-
-        if ($this->attribute)
-        {
-            return $this->renderAttribute($this->attribute);
-        }
-
-        return '';        
-    }
-
-    public function run()
-    {
-        $content = $this->renderContent();
-
-        $options = HtmlHelper::mergeAttributes($this->defaultOptions, $this->options);
-
-        return HtmlHelper::tag($this->tag, $content, $options);
-    }
-
-
-    */
-
 
 }
