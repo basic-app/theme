@@ -35,8 +35,6 @@ class Theme extends \PhpTheme\Core\BaseTheme
     {
     }
 
-    abstract public function widget($class, array $options = []);
-
     public function postButton(array $attributes = [])
     {
         $options = HtmlHelper::mergeAttributes($this->postButtonAttributes, $attributes);

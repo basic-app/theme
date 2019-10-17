@@ -15,6 +15,12 @@ use BasicApp\Theme\TableLinkColumn;
 class Table extends \PhpTheme\Html\BaseTable
 {
 
+    public $labels = [];
+
+    public $data = [];
+
+    public $columns;
+
     public $linkColumnClass = TableLinkColumn::class;
 
     public $updateLinkColumnClass = TableUpdateLinkColumn::class;
@@ -71,8 +77,6 @@ class Table extends \PhpTheme\Html\BaseTable
         ]
     ];
 
-    abstract public function run();
-
     public function createBooleanColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumnOptions, $options);
@@ -100,5 +104,39 @@ class Table extends \PhpTheme\Html\BaseTable
 
         return $this->theme->createWidget($this->linkColumnClass, $options);
     }    
+
+    public function createHeader(array $params = [])
+    {
+        if ($this->labels)
+        {
+            $params['rows'][] = ['columns' => $this->labels];
+        }
+
+        return parent::createHeader($params);
+    }
+
+    public function createBody(array $params = [])
+    {
+        if ($this->data)
+        {
+            foreach($this->data as $data)
+            {
+                $columnFunction = $this->columns;
+
+                $columnFunction = $columnFunction->bindTo($this);
+
+                $columns = $columnFunction($data);
+
+                foreach($columns as $key => $value)
+                {
+                    $value->data = $data;
+                }
+
+                $params['body']['rows'][] = ['columns' => $columns];
+            }
+        }
+
+        return parent::createHeader($params);
+    }
 
 }
