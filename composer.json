@@ -11,8 +11,10 @@
         ]
     },
     "require": {
-        "basic-app/core" : "dev-master",
         "phptheme/core" : "dev-master",
-        "phptheme/html": "dev-master"
+        "phptheme/html": "dev-master",
+        "phptheme/html-menu": "dev-master",
+        "phptheme/html-table": "dev-master",
+        "basic-app/core" : "dev-master"
     }
 }
