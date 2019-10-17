@@ -15,19 +15,19 @@ use BasicApp\Theme\TableLinkColumn;
 class Table extends \PhpTheme\Html\BaseTable
 {
 
+    const LINK_COLUMN = TableLinkColumn::class;
+
+    const UPDATE_LINK_COLUMN  = TableUpdateLinkColumn::class;
+
+    const DELETE_LINK_COLUMN = TableDeleteLinkColumn::class;
+
+    const BOOLEAN_LINK_COLUMN = TableBooleanColumn::class;
+
     public $labels = [];
 
     public $data = [];
 
     public $columns;
-
-    public $linkColumnClass = TableLinkColumn::class;
-
-    public $updateLinkColumnClass = TableUpdateLinkColumn::class;
-
-    public $deleteLinkColumnClass = TableDeleteLinkColumn::class;
-
-    public $booleanColumnClass = TableBooleanColumn::class;
 
     public $defaultLinkColumnOptions = [
         'headerOptions' => [
@@ -81,28 +81,28 @@ class Table extends \PhpTheme\Html\BaseTable
     {
         $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumnOptions, $options);
 
-        return $this->theme->createWidget($this->booleanColumnClass, $options);
+        return $this->theme->createWidget(static::BOOLEAN_LINK_COLUMN, $options);
     }
 
     public function createUpdateLinkColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultUpdateLinkColumnOptions, $options);
 
-        return $this->theme->createWidget($this->updateLinkColumnClass, $options);
+        return $this->theme->createWidget(static::UPDATE_LINK_COLUMN, $options);
     }
 
     public function createDeleteLinkColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultDeleteLinkColumnOptions, $options);
 
-        return $this->theme->createWidget($this->deleteLinkColumnClass, $options);
+        return $this->theme->createWidget(static::DELETE_LINK_COLUMN, $options);
     }
 
     public function createLinkColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultLinkColumnOptions, $options);
 
-        return $this->theme->createWidget($this->linkColumnClass, $options);
+        return $this->theme->createWidget(static::LINK_COLUMN, $options);
     }    
 
     public function createHeader(array $params = [])
