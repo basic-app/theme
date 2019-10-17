@@ -6,13 +6,13 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Helpers\Html;
+use PhpTheme\Html\HtmlHelper;
 use BasicApp\Theme\TableUpdateLinkColumn;
 use BasicApp\Theme\TableDeleteLinkColumn;
 use BasicApp\Theme\TableBooleanColumn;
 use BasicApp\Theme\TableLinkColumn;
 
-abstract class TableAbstract extends \PhpTheme\Html\BaseTableAbstract
+class Table extends \PhpTheme\Html\BaseTable
 {
 
     public $linkColumnClass = TableLinkColumn::class;
@@ -75,28 +75,28 @@ abstract class TableAbstract extends \PhpTheme\Html\BaseTableAbstract
 
     public function createBooleanColumn(array $options = [])
     {
-        $options = Html::mergeOptions($this->defaultBooleanColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumnOptions, $options);
 
         return $this->theme->createWidget($this->booleanColumnClass, $options);
     }
 
     public function createUpdateLinkColumn(array $options = [])
     {
-        $options = Html::mergeOptions($this->defaultUpdateLinkColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultUpdateLinkColumnOptions, $options);
 
         return $this->theme->createWidget($this->updateLinkColumnClass, $options);
     }
 
     public function createDeleteLinkColumn(array $options = [])
     {
-        $options = Html::mergeOptions($this->defaultDeleteLinkColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultDeleteLinkColumnOptions, $options);
 
         return $this->theme->createWidget($this->deleteLinkColumnClass, $options);
     }
 
     public function createLinkColumn(array $options = [])
     {
-        $options = Html::mergeOptions($this->defaultLinkColumnOptions, $options);
+        $options = HtmlHelper::mergeAttributes($this->defaultLinkColumnOptions, $options);
 
         return $this->theme->createWidget($this->linkColumnClass, $options);
     }    

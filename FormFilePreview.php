@@ -6,8 +6,6 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Helpers\Html;
-
 class FormFilePreview extends \PhpTheme\Core\Widget
 {
 

@@ -6,6 +6,6 @@
  */
 namespace PhpTheme\Core;
 
-abstract class ThemeAbstract extends \BasicApp\Theme\Theme
+abstract class Theme extends \BasicApp\Theme\Theme
 {
 }

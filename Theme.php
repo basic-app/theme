@@ -10,7 +10,7 @@ use PhpTheme\Html\HtmlHelper;
 use BasicApp\Theme\PostButton;
 use BasicApp\Theme\Form;
 
-abstract class Theme
+class Theme extends \PhpTheme\Core\BaseTheme
 {
 
     const PAGER = Pager::class;

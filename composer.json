@@ -5,16 +5,14 @@
             "BasicApp\\Theme\\": ""
         },
         "files": [
-            "_autoload/ThemeAbstract.php",
-            "_autoload/TableColumnAbstract.php",
-            "_autoload/TableAbstract.php"
+            "_autoload/Theme.php",
+            "_autoload/TableColumn.php",
+            "_autoload/Table.php"
         ]
     },
     "require": {
+        "basic-app/core" : "dev-master",
         "phptheme/core" : "dev-master",
-        "phptheme/html": "dev-master",
-        "phptheme/html-menu": "dev-master",
-        "phptheme/html-table": "dev-master",
-        "basic-app/core" : "dev-master"
+        "phptheme/html": "dev-master"
     }
 }

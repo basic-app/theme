@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Helpers\Html;
+use PhpTheme\Html\HtmlHelper;
 use BasicApp\Helpers\Url;
 
 class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
@@ -107,7 +107,7 @@ class TableDeleteLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 
         $content = strtr($this->template, $this->params);
 
-        return Html::tag('a', $content, $linkOptions);        
+        return HtmlHelper::tag('a', $content, $linkOptions);        
     }
 
 }

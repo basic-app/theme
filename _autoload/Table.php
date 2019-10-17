@@ -6,6 +6,6 @@
  */
 namespace PhpTheme\Html;
 
-abstract class TableAbstract extends \BasicApp\Theme\TableAbstract
+class Table extends \BasicApp\Theme\Table
 {
 }

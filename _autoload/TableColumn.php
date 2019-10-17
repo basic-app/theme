@@ -6,6 +6,6 @@
  */
 namespace PhpTheme\Html;
 
-abstract class TableColumnAbstract extends \BasicApp\Theme\TableColumnAbstract
+abstract class TableColumn extends \BasicApp\Theme\TableColumn
 {
 }

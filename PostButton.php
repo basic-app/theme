@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Helpers\Html;
+use PhpTheme\Html\HtmlHelper;
 
 class PostButton extends \PhpTheme\Html\Tag
 {
@@ -25,7 +25,7 @@ class PostButton extends \PhpTheme\Html\Tag
 
         $formOptions['action'] = $this->url;
 
-        return Html::tag('form', $content, $formOptions);
+        return HtmlHelper::tag('form', $content, $formOptions);
     }
 
 }

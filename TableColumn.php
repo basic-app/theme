@@ -6,9 +6,9 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Helpers\Html;
+use PhpTheme\Html\HtmlHelper;
 
-abstract class TableColumnAbstract extends \PhpTheme\Html\BaseTableColumnAbstract
+class TableColumn extends \PhpTheme\Html\BaseTableColumn
 {
 
     abstract public function run();
@@ -22,9 +22,9 @@ abstract class TableColumnAbstract extends \PhpTheme\Html\BaseTableColumnAbstrac
 
     public function number($options = [])
     {
-        $this->options = Html::mergeOptions($this->options, $this->defaultNumberOptions);
+        $this->options = HtmlHelper::mergeAttributes($this->options, $this->defaultNumberOptions);
 
-        $this->options = Html::mergeOptions($this->options, $options);
+        $this->options = HtmlHelper::mergeAttributes($this->options, $options);
 
         return $this;
     }
