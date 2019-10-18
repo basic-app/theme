@@ -9,7 +9,7 @@ namespace BasicApp\Theme;
 use PhpTheme\Html\HtmlHelper;
 use BasicApp\Helpers\Url;
 
-class TableUpdateLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
+class TableUpdateLinkColumn extends  TableColumn
 {
 
     public $label;
@@ -26,7 +26,7 @@ class TableUpdateLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
 
     public $urlParams = [];
 
-    public function renderContent()
+    public function getContent()
     {
         $label = $this->label;
 
@@ -41,7 +41,7 @@ class TableUpdateLinkColumn extends \PhpTheme\Bootstrap4\TableColumn
         {
             $urlParams = $this->urlParams;
 
-            $pk = $this->row->getPrimaryKey();
+            $pk = $this->data->getPrimaryKey();
 
             if (is_array($pk))
             {

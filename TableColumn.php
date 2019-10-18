@@ -11,11 +11,17 @@ use PhpTheme\Html\HtmlHelper;
 class TableColumn extends \PhpTheme\Html\BaseTableColumn
 {
 
-    public $data;
+    public $data = [];
 
     public $attribute;
 
-    public $defaultNumberOptions = [
+    public $footerOptions = [];
+
+    public $headerOptions = [];
+
+    public $number = [];
+
+    public $defaultNumber = [
         'style' => [
             'text-align' => 'right',
             'width' => '1%'
@@ -24,34 +30,19 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public function number($options = [])
     {
-        $this->options = HtmlHelper::mergeAttributes($this->options, $this->defaultNumberOptions, $options);
+        $this->options = HtmlHelper::mergeAttributes($this->number, $this->defaultNumber, $options);
 
         return $this;
     }
 
     public function getContent()
     {
-        $content = $this->content;
-
-        if ($content instanceof Closure)
+        if ($this->content)
         {
-            return $content($this->data);
+            return $this->content;
         }
 
-        if ($content !== null)
-        {
-            return $content;
-        }
-
-        if ($this->attribute)
-        {
-            return $this->renderAttribute($this->attribute);
-        }
-
-        return '';
-    }
-
-    public function renderAttribute($attribute)
+        if ($this->data && $this->attribute)
     {
         $data = $this->data;
 
@@ -63,12 +54,17 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
             }
             else
             {
-
-                return $data->{$attribute};
+                    return $data->{$this->attribute};
             }
         }
 
+            if (array_key_exists($this->attribute, $data))
+            {
         return $data[$this->attribute];     
+            }
+        }
+
+        return null;
     }
 
 }
