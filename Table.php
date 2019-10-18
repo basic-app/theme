@@ -35,7 +35,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public $footerColumnOptions = [];
 
-    public $defaultLinkColumnOptions = [
+    public $defaultLinkColumn = [
         'headerOptions' => [
             'style' => [
                 'width' => '1%'           
