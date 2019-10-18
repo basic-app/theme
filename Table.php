@@ -31,6 +31,10 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public $columns;
 
+    public $headerColumnOptions = [];
+
+    public $footerColumnOptions = [];
+
     public $defaultLinkColumnOptions = [
         'headerOptions' => [
             'style' => [
@@ -116,19 +120,17 @@ class Table extends \PhpTheme\Html\BaseTable
 
         $return = parent::createHeader($params);
 
-        /*
-
         foreach($this->headerColumnOptions as $key => $options)
         {
-            foreach($return->rows as $k => $v)
+            foreach($return->getRows() as $k => $row)
             {
-                $column = $v->columns[$key];
+                $columns = $row->getColumns();
 
-                $column->options = Html::mergeAttributes($column->options, $options);
+                $column = $columns[$key];
+
+                $column->options = HtmlHelper::mergeAttributes($column->options, $options);
             }
         }
-
-        */
 
         return $return;
     }
@@ -163,6 +165,16 @@ class Table extends \PhpTheme\Html\BaseTable
                 $params['rows'][] = ['columns' => $columns];
             }
         }
+
+
+
+        //echo '<pre>';
+
+        //print_r($this->headerColumnOptions);
+
+        //print_r($this->footerColumnOptions);
+
+        //die;
 
         return parent::createBody($params);
     }
