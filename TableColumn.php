@@ -11,7 +11,9 @@ use PhpTheme\Html\HtmlHelper;
 class TableColumn extends \PhpTheme\Html\BaseTableColumn
 {
 
-    public $globalOptions = [];
+    public $data;
+
+    public $attribute;
 
     public $defaultNumberOptions = [
         'style' => [
@@ -22,89 +24,18 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public function number($options = [])
     {
-        $this->options = HtmlHelper::mergeAttributes($this->options, $this->defaultNumberOptions);
-
-        $this->options = HtmlHelper::mergeAttributes($this->options, $options);
+        $this->options = HtmlHelper::mergeAttributes($this->options, $this->defaultNumberOptions, $options);
 
         return $this;
     }
 
-    public function getHeader()
+    public function getContent()
     {
-        if ($this->attribute && $this->row)
-        {
-            return $this->row->label($this->attribute);
-        }
-
-        return null;
-    }
-
-    /*
-
-    public $row = [];
-
-    public $options = [];
-
-    public $defaultOptions = [];
-
-    public $header = null;
-
-    public $defaultHeaderOptions = [];
-
-    public $headerTag = 'th';
-
-    public $headerOptions = [];
-
-    public $footer = null;
-
-    public $footerTag = 'td';
-
-    public $defaultFooterOptions = [];
-
-    public $footerOptions = [];
-
-    public $attribute;
-
-    public function getAttributeValue()
-    {
-        if (is_object($this->row))
-        {
-            return $this->row->{$this->attribute};
-        }
-        else
-        {
-            return $this->row[$this->attribute];
-        }        
-    }
-
-    public function renderAttribute()
-    {
-        $return = parent::renderAttribute();
-
-        if ($return !== null)
-        {
-            return $return;
-        }
-
-        $return = $this->getAttributeValue();
-
-        return $return;
-    }
-
-    public function renderContent()
-    {
-        $return = parent::renderContent();
-
-        if ($return !== null)
-        {
-            return $return;
-        }
-
         $content = $this->content;
 
         if ($content instanceof Closure)
         {
-            return $content($this->row);
+            return $content($this->data);
         }
 
         if ($content !== null)
@@ -117,20 +48,27 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
             return $this->renderAttribute($this->attribute);
         }
 
-        return '';        
+        return '';
     }
 
-    public function run()
+    public function renderAttribute($attribute)
     {
-        $content = $this->renderContent();
+        $data = $this->data;
 
-        $options = HtmlHelper::mergeAttributes($this->defaultOptions, $this->options);
+        if (is_object($data))
+        {
+            if (method_exists($data, 'toArray'))
+            {
+                $data = $data->toArray();
+            }
+            else
+            {
 
-        return HtmlHelper::tag($this->tag, $content, $options);
+                return $data->{$attribute};
+            }
+        }
+
+        return $data[$this->attribute];     
     }
-
-
-    */
-
 
 }
