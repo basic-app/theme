@@ -137,7 +137,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public function createBody(array $params = [])
     {   
-        if ($this->data)
+        if ($this->elements)
         {
             foreach($this->elements as $data)
             {
