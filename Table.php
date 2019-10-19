@@ -27,7 +27,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public $labels = [];
 
-    public $data = [];
+    public $elements = [];
 
     public $columns;
 
@@ -139,7 +139,7 @@ class Table extends \PhpTheme\Html\BaseTable
     {   
         if ($this->data)
         {
-            foreach($this->data as $data)
+            foreach($this->elements as $data)
             {
                 $columnFunction = $this->columns;
 
@@ -165,17 +165,7 @@ class Table extends \PhpTheme\Html\BaseTable
                 $params['rows'][] = ['columns' => $columns];
             }
         }
-
-
-
-        //echo '<pre>';
-
-        //print_r($this->headerColumnOptions);
-
-        //print_r($this->footerColumnOptions);
-
-        //die;
-
+        
         return parent::createBody($params);
     }
 
