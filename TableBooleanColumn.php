@@ -31,6 +31,15 @@ class TableBooleanColumn extends \PhpTheme\Bootstrap4\TableColumn
             $no = t('theme', 'No');
         }
 
+        if ($value)
+        {
+            $this->success();
+        }
+        else
+        {
+            $this->error();
+        }
+
         return $value ? $yes : $no;
     }
 
