@@ -68,7 +68,7 @@ class TableDeleteLinkColumn extends TableColumn
             $url = Url::returnUrl($this->action, $urlParams);
         }
 
-        $deleteButton = $this->theme->postButton([
+        $deleteButton = $this->table->theme->postButton([
             'tag' => 'button',
             'content' => $label,
             'options' => [
@@ -86,14 +86,14 @@ class TableDeleteLinkColumn extends TableColumn
             $confirmMessage = t('app', 'Are you sure?');
         }
 
-        $popup = $this->theme->popup([
+        $popup = $this->table->theme->popup([
             'id' => $id,
             'title' => $label,
             'content' => '<p>' . $confirmMessage . '</p>',
             'footer' => $deleteButton
         ]);
 
-        $this->theme->endBody .= $popup;
+        $this->table->theme->endBody .= $popup;
 
         $linkOptions = $this->linkOptions;
 

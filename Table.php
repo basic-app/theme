@@ -87,28 +87,36 @@ class Table extends \PhpTheme\Html\BaseTable
     {
         $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumn, $options);
 
-        return $this->theme->createWidget(static::BOOLEAN_COLUMN, $options);
+        $options['class'] = static::BOOLEAN_COLUMN;
+
+        return $this->createColumn($options);
     }
 
     public function createUpdateLinkColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultUpdateLinkColumn, $options);
 
-        return $this->theme->createWidget(static::UPDATE_LINK_COLUMN, $options);
+        $options['class'] = static::UPDATE_LINK_COLUMN;
+
+        return $this->createColumn($options);
     }
 
     public function createDeleteLinkColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultDeleteLinkColumn, $options);
 
-        return $this->theme->createWidget(static::DELETE_LINK_COLUMN, $options);
+        $options['class'] = static::DELETE_LINK_COLUMN;
+
+        return $this->createColumn($options);
     }
 
     public function createLinkColumn(array $options = [])
     {
         $options = HtmlHelper::mergeAttributes($this->defaultLinkColumn, $options);
 
-        return $this->theme->createWidget(static::LINK_COLUMN, $options);
+        $options['class'] = static::LINK_COLUMN;
+
+        return $this->createColumn($options);
     }    
 
     public function createHeader(array $params = [])

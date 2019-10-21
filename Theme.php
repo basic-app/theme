@@ -39,7 +39,9 @@ class Theme extends \PhpTheme\Core\BaseTheme
     {
         $options = HtmlHelper::mergeAttributes($this->postButtonAttributes, $attributes);
 
-        return $this->widget(static::POST_BUTTON, $options);
+        $class = static::POST_BUTTON;
+
+        return $class::factory($options)->render();
     }
 
     public function createForm(object $model, array $errors = [])
