@@ -13,9 +13,9 @@ class TableBooleanColumn extends \PhpTheme\Bootstrap4\TableColumn
 
     public $no;
 
-    public function renderContent()
+    public function getContent()
     {
-        $value = $this->getAttributeValue();
+        $value = parent::getContent();
 
         $yes = $this->yes;
 

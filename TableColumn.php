@@ -43,24 +43,24 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
         }
 
         if ($this->data && $this->attribute)
-    {
-        $data = $this->data;
-
-        if (is_object($data))
         {
-            if (method_exists($data, 'toArray'))
+            $data = $this->data;
+
+            if (is_object($data))
             {
-                $data = $data->toArray();
-            }
-            else
-            {
+                if (method_exists($data, 'toArray'))
+                {
+                    $data = $data->toArray();
+                }
+                else
+                {
                     return $data->{$this->attribute};
+                }
             }
-        }
 
             if (array_key_exists($this->attribute, $data))
             {
-        return $data[$this->attribute];     
+                return $data[$this->attribute];     
             }
         }
 
