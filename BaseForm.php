@@ -8,7 +8,6 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Html\HtmlHelper;
 use BasicApp\Helpers\ArrayHelper;
-use BasicApp\Traits\FactoryTrait;
 
 abstract class BaseForm extends \BasicApp\Core\Form
 {
