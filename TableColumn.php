@@ -21,6 +21,18 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public $number = [];
 
+    public $success = [];
+
+    public $defaultSuccess = [
+        'class' => 'process'
+    ];
+
+    public $error = [];
+
+    public $defaultError = [
+        'class' => 'denied'
+    ];
+
     public $defaultNumber = [
         'style' => [
             'text-align' => 'right',
@@ -31,6 +43,20 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
     public function number($options = [])
     {
         $this->options = HtmlHelper::mergeAttributes($this->number, $this->defaultNumber, $options);
+
+        return $this;
+    }
+
+    public function success($options = [])
+    {
+        $this->options = HtmlHelper::mergeAttributes($this->success, $this->defaultSuccess, $options);
+
+        return $this;
+    }
+
+    public function error($options = [])
+    {
+        $this->options = HtmlHelper::mergeAttributes($this->error, $this->defaultError, $options);
 
         return $this;
     }
