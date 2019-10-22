@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Basic App Dev Team
+ * @author Basic App Dev Team <dev@basic-app.com>
  * @license MIT
  * @link http://basic-app.com
  */
@@ -23,21 +23,21 @@ class Theme extends \PhpTheme\Core\BaseTheme
 
     const FILE_PREVIEW = FormFilePreview::class;
 
-    public $postButtonAttributes = [];
+    public $postButtonOptions = [];
 
-    public $pagerAttributes = [];
+    public $pagerOptions = [];
 
-    public $imagePreviewAttributes = [];
+    public $imagePreviewOptions = [];
 
-    public $filePreviewAttributes = [];
+    public $filePreviewOptions = [];
 
     public function __construct()
     {
     }
 
-    public function postButton(array $attributes = [])
+    public function postButton(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->postButtonAttributes, $attributes);
+        $options = HtmlHelper::mergeOptions($this->postButtonOptions, $options);
 
         $class = static::POST_BUTTON;
 
@@ -53,25 +53,25 @@ class Theme extends \PhpTheme\Core\BaseTheme
         return $form;
     }
 
-    public function pager(array $attributes = [])
+    public function pager(array $options = [])
     {
-        $attributes = HtmlHelper::mergeAttributes($this->pagerAttributes, $attributes);
+        $options = HtmlHelper::mergeOptions($this->pagerOptions, $options);
 
-        return $this->widget(static::PAGER, $attributes);
+        return $this->widget(static::PAGER, $options);
     }
 
-    public function imagePreview(array $attributes = [])
+    public function imagePreview(array $options = [])
     {
-        $attributes = HtmlHelper::mergeAttributes($this->imagePreviewAttributes, $attributes);
+        $attributes = HtmlHelper::mergeOptions($this->imagePreviewOptions, $options);
 
-        return $this->widget(static::IMAGE_PREVIEW, $attributes);
+        return $this->widget(static::IMAGE_PREVIEW, $options);
     }
 
-    public function filePreview(array $attributes = [])
+    public function filePreview(array $options = [])
     {
-        $attributes = HtmlHelper::mergeAttributes($this->filePreviewAttributes, $attributes);
+        $attributes = HtmlHelper::mergeOptions($this->filePreviewOptions, $options);
 
-        return $this->widget(static::FILE_PREVIEW, $attributes);
+        return $this->widget(static::FILE_PREVIEW, $options);
     }
 
 }
