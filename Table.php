@@ -31,50 +31,50 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public $columns;
 
-    public $headerColumnOptions = [];
+    public $headerColumnAttributes = [];
 
-    public $footerColumnOptions = [];
+    public $footerColumnAttributes = [];
 
-    public $defaultLinkColumn = [
-        'headerOptions' => [
+    public $linkColumnOptions = [
+        'headerAttributes' => [
             'style' => [
                 'width' => '1%'           
             ]
         ]
     ];
 
-    public $defaultBooleanColumn = [
-        'headerOptions' => [
+    public $booleanColumnOptions = [
+        'headerAttributes' => [
             'style' => [
                 'width' => '1%'  
             ]
         ]
     ];
 
-    public $defaultUpdateLinkColumn = [
-       'options' => [
+    public $updateLinkColumnOptions = [
+       'attributes' => [
             'style' => [
                 'padding' => '0px 12px',
                 'vertical-align' => 'middle'
             ]
         ],
-        'headerOptions' => [
+        'headerAttributes' => [
             'style' => [
                 'width' => '1%',
                 'padding' => '0px 12px',
                 'vertical-align' => 'middle'                
-            ]
+            ]        
         ]
     ];
 
-    public $defaultDeleteLinkColumn = [
-        'options' => [
+    public $deleteLinkColumnOptions = [
+        'attributes' => [
             'style' => [
                 'padding' => '0px 20px',
                 'vertical-align' => 'middle'
             ]
         ],
-        'headerOptions' => [
+        'headerAttributes' => [
             'style' => [
                 'width' => '1%',
                 'padding' => '0px 12px',
@@ -85,7 +85,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public function createBooleanColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultBooleanColumn, $options);
+        $options = HtmlHelper::mergeOptions($this->booleanColumnOptions, $options);
 
         $options['class'] = static::BOOLEAN_COLUMN;
 
@@ -94,7 +94,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public function createUpdateLinkColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultUpdateLinkColumn, $options);
+        $options = HtmlHelper::mergeOptions($this->updateLinkColumnOptions, $options);
 
         $options['class'] = static::UPDATE_LINK_COLUMN;
 
@@ -103,7 +103,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public function createDeleteLinkColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultDeleteLinkColumn, $options);
+        $options = HtmlHelper::mergeOptions($this->deleteLinkColumnOptions, $options);
 
         $options['class'] = static::DELETE_LINK_COLUMN;
 
@@ -112,7 +112,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
     public function createLinkColumn(array $options = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->defaultLinkColumn, $options);
+        $options = HtmlHelper::mergeOptions($this->linkColumnOptions, $options);
 
         $options['class'] = static::LINK_COLUMN;
 
@@ -128,7 +128,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
         $return = parent::createHeader($params);
 
-        foreach($this->headerColumnOptions as $key => $options)
+        foreach($this->headerColumnAttributes as $key => $attributes)
         {
             foreach($return->getRows() as $k => $row)
             {
@@ -136,7 +136,7 @@ class Table extends \PhpTheme\Html\BaseTable
 
                 $column = $columns[$key];
 
-                $column->options = HtmlHelper::mergeAttributes($column->options, $options);
+                $column->attributes = HtmlHelper::mergeAttributes($column->attributes, $attributes);
             }
         }
 
@@ -159,14 +159,14 @@ class Table extends \PhpTheme\Html\BaseTable
                 {
                     $column->data = $data;
 
-                    if (!array_key_exists($key, $this->headerColumnOptions) && $column->headerOptions)
+                    if (!array_key_exists($key, $this->headerColumnAttributes) && $column->headerAttributes)
                     {
-                        $this->headerColumnOptions[$key] = $column->headerOptions;
+                        $this->headerColumnAttributes[$key] = $column->headerAttributes;
                     }
 
-                    if (!array_key_exists($key, $this->footerColumnOptions) && $column->footerOptions)
+                    if (!array_key_exists($key, $this->footerColumnAttributes) && $column->footerAttributes)
                     {
-                        $this->footerColumnOptions[$key] = $column->footerOptions;
+                        $this->footerColumnAttributes[$key] = $column->footerAttributes;
                     }
                 }
 
@@ -175,6 +175,25 @@ class Table extends \PhpTheme\Html\BaseTable
         }
         
         return parent::createBody($params);
+    }
+
+    public function createFooter(array $params = [])
+    {
+        $return = parent::createFooter($params);
+
+        foreach($this->footerColumnAttributes as $key => $attributes)
+        {
+            foreach($return->getRows() as $k => $row)
+            {
+                $columns = $row->getColumns();
+
+                $column = $columns[$key];
+
+                $column->attributes = HtmlHelper::mergeAttributes($column->attributes, $attributes);
+            }
+        }
+
+        return $return;
     }
 
 }

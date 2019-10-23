@@ -20,7 +20,9 @@ class TableDeleteLinkColumn extends TableColumn
 
     public $template = '<i class="fa fa-times-circle"></i>';
 
-    public $linkOptions = [];
+    public $linkTag = 'a';
+
+    public $linkAttributes = [];
 
     public $confirmMessage;
 
@@ -95,19 +97,22 @@ class TableDeleteLinkColumn extends TableColumn
 
         $this->table->theme->endBody .= $popup;
 
-        $linkOptions = $this->linkOptions;
+        return $this->createLink($id, $this->linkAttributes);
+    }
 
-        $linkOptions['data-target'] = '#' . $id;
+    protected function createLink($id, $attributes = [])
+    {
+        $attributes['data-target'] = '#' . $id;
 
-        $linkOptions['data-toggle'] = 'modal'; 
+        $attributes['data-toggle'] = 'modal'; 
 
-        $linkOptions['href'] = '#';
+        $attributes['href'] = '#';
 
-        $linkOptions['style'] = 'color: #ff0000;';
+        $attributes['style'] = 'color: #ff0000;';
 
         $content = strtr($this->template, $this->params);
 
-        return HtmlHelper::tag('a', $content, $linkOptions);        
+        return HtmlHelper::tag($this->linkTag, $content, $attributes);
     }
 
 }

@@ -62,14 +62,14 @@ class Theme extends \PhpTheme\Core\BaseTheme
 
     public function imagePreview(array $options = [])
     {
-        $attributes = HtmlHelper::mergeOptions($this->imagePreviewOptions, $options);
+        $options = HtmlHelper::mergeOptions($this->imagePreviewOptions, $options);
 
         return $this->widget(static::IMAGE_PREVIEW, $options);
     }
 
     public function filePreview(array $options = [])
     {
-        $attributes = HtmlHelper::mergeOptions($this->filePreviewOptions, $options);
+        $options = HtmlHelper::mergeOptions($this->filePreviewOptions, $options);
 
         return $this->widget(static::FILE_PREVIEW, $options);
     }

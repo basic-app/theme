@@ -11,21 +11,23 @@ use PhpTheme\Html\HtmlHelper;
 class PostButton extends \PhpTheme\Html\Tag
 {
 
-    public $formOptions = [];
+    public $formAttributes = [];
 
     public $url;
+
+    public $tag = false;
 
     public function render()
     {
         $content = parent::render();
 
-        $formOptions = $this->formOptions;
+        $attributes = $this->formAttributes;
 
-        $formOptions['method'] = 'POST';
+        $attributes['method'] = 'POST';
 
-        $formOptions['action'] = $this->url;
+        $attributes['action'] = $this->url;
 
-        return HtmlHelper::tag('form', $content, $formOptions);
+        return HtmlHelper::tag('form', $content, $attributes);
     }
 
     public function run()

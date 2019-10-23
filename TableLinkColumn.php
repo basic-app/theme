@@ -15,7 +15,9 @@ class TableLinkColumn extends TableColumn
 
     public $label;
 
-    public $linkOptions = [];
+    public $linkTag = 'a';
+
+    public $linkAttributes = [];
 
     public $template = '{label}';
 
@@ -25,11 +27,11 @@ class TableLinkColumn extends TableColumn
     {
         $label = $this->label;
 
-        $linkOptions = $this->linkOptions;
+        $attributes = $this->linkAttributes;
 
-        $linkOptions['href'] = $this->url;
+        $attributes['href'] = $this->url;
 
-        $linkOptions['title'] = $label;
+        $attributes['title'] = $label;
 
         $params = $this->params;
 
@@ -37,7 +39,7 @@ class TableLinkColumn extends TableColumn
 
         $content = strtr($this->template, $params);
 
-        return HtmlHelper::tag('a', $content, $linkOptions);
+        return HtmlHelper::tag($this->linkTag, $content, $attributes);
     }
 
 }

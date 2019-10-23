@@ -9,12 +9,14 @@ namespace BasicApp\Theme;
 use PhpTheme\Html\HtmlHelper;
 use BasicApp\Helpers\Url;
 
-class TableUpdateLinkColumn extends  TableColumn
+class TableUpdateLinkColumn extends TableColumn
 {
 
     public $label;
 
-    public $linkOptions = [];
+    public $linkTag = 'a';
+
+    public $linkAttributes = [];
 
     public $template = '<i class="fa fa-edit"></i>';
 
@@ -28,14 +30,16 @@ class TableUpdateLinkColumn extends  TableColumn
 
     public function getContent()
     {
+        $attributes = $this->linkAttributes;
+
         $label = $this->label;
 
         if (!$label)
         {
             $label = t('theme', 'Update');
-        }
+        }        
 
-        $linkOptions = $this->linkOptions;
+        $attributes['title'] = $label;
 
         if ($this->action)
         {
@@ -52,18 +56,18 @@ class TableUpdateLinkColumn extends  TableColumn
                 $urlParams['id'] = $pk;
             }
 
-            $linkOptions['href'] = Url::returnUrl($this->action, $urlParams);
+            $attributes['href'] = Url::returnUrl($this->action, $urlParams);
         }
         else
         {
-            $linkOptions['href'] = $this->url;
+            $attributes['href'] = $this->url;
         }
 
-        $linkOptions['title'] = $label;
+        $params['{label}'] = $label;
 
         $content = strtr($this->template, $this->params);
 
-        return HtmlHelper::tag('a', $content, $linkOptions);
+        return HtmlHelper::tag($this->linkTag, $content, $attributes);
     }
 
 }

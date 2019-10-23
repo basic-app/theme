@@ -15,48 +15,42 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public $attribute;
 
-    public $footerOptions = [];
+    public $footerAttributes = [];
 
-    public $headerOptions = [];
+    public $headerAttributes = [];
 
-    public $number = [];
-
-    public $success = [];
-
-    public $defaultSuccess = [
+    public $successAttributes = [
         'class' => 'process'
     ];
 
-    public $error = [];
-
-    public $defaultError = [
+    public $errorAttributes = [
         'class' => 'denied'
     ];
 
-    public $defaultNumber = [
+    public $numberAttributes = [
         'style' => [
             'text-align' => 'right',
             'width' => '1%'
         ]
     ];
 
-    public function number($options = [])
+    public function number($attributes = [])
     {
-        $this->options = HtmlHelper::mergeAttributes($this->number, $this->defaultNumber, $options);
+        $this->attributes = HtmlHelper::mergeAttributes($this->numberAttributes, $attributes);
 
         return $this;
     }
 
-    public function success($options = [])
+    public function success($attributes = [])
     {
-        $this->options = HtmlHelper::mergeAttributes($this->success, $this->defaultSuccess, $options);
+        $this->attributes = HtmlHelper::mergeAttributes($this->successAttributes, $attributes);
 
         return $this;
     }
 
-    public function error($options = [])
+    public function error($attributes = [])
     {
-        $this->options = HtmlHelper::mergeAttributes($this->error, $this->defaultError, $options);
+        $this->attributes = HtmlHelper::mergeAttributes($this->errorAttributes, $attributes);
 
         return $this;
     }

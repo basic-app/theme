@@ -12,13 +12,13 @@ use BasicApp\Helpers\ArrayHelper;
 abstract class BaseForm extends \BasicApp\Core\Form
 {
 
-    public $editorTextareaOptions = ['class' => 'form-control editor'];
+    public $editorTextareaAttributes = ['class' => 'form-control editor'];
 
-    public $codeTextareaOptions = ['class' => 'form-control code'];
+    public $codeTextareaAttributes = ['class' => 'form-control code'];
 
-    public $uploadImageOptions = [];
+    public $uploadImageAttributes = [];
 
-    public $uploadFileOptions = [];
+    public $uploadFileAttributes = [];
 
     protected $_theme;
 
@@ -36,70 +36,70 @@ abstract class BaseForm extends \BasicApp\Core\Form
         return $modelClass::fieldLabel($field, parent::_getFieldLabel($data, $field));
     }
 
-    public function editorTextarea($data, $name, array $options = [])
+    public function editorTextarea($data, $field, array $attributes = [])
     {
-        $options = HtmlHelper::mergeOptions($this->editorTextareaOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->editorTextareaAttributes, $attributes);
 
-        return $this->textarea($data, $name, $options);
+        return $this->textarea($data, $field, $attributes);
     }
 
-    public function editorTextareaGroup($data, $name, array $options = [], array $groupOptions = [])
+    public function editorTextareaGroup($data, $field, array $attributes = [], array $groupOptions = [])
     {
-        $attributes = HtmlHelper::mergeOptions($this->editorTextareaOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->editorTextareaAttributes, $attributes);
 
-        return $this->textareaGroup($data, $name, $options, $groupOptions);
+        return $this->textareaGroup($data, $field, $attributes, $groupOptions);
     }
 
-    public function codeTextarea($data, $name, array $options = [])
+    public function codeTextarea($data, $field, array $attributes = [])
     {
-        $options = HtmlHelper::mergeOptions($this->codeTextareaOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->codeTextareaAttributes, $attributes);
 
-        return $this->textarea($data, $name, $options);
+        return $this->textarea($data, $field, $attributes);
     }
 
-    public function codeTextareaGroup($data, $name, array $options = [], array $groupOptions = [])
+    public function codeTextareaGroup($data, $field, array $attributes = [], array $groupOptions = [])
     {
-        $options = HtmlHelper::mergeOptions($this->codeTextareaOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->codeTextareaAttributes, $attributes);
 
-        return $this->textareaGroup($data, $name, $options, $groupOptions);
+        return $this->textareaGroup($data, $field, $attributes, $groupOptions);
     }
 
-    public function uploadImage($data, $attribute, $filename = null, array $options = [])
+    public function uploadImage($data, $field, $filename = null, array $attributes = [])
     {
-        $options = HtmlHelper::mergeAttributes($this->uploadImageOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->uploadImageAttributes, $attributes);
 
-        return $this->upload($data, $attribute, $options);
+        return $this->upload($data, $field, $attributes);
     }
 
-    public function uploadImageGroup($data, $attribute, $filename = null, array $options = [], $groupOptions = [])
+    public function uploadImageGroup($data, $field, $filename = null, array $attributes = [], $groupOptions = [])
     {
-        $options = HtmlHelper::mergeOptions($this->uploadImageOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->uploadImageAttributes, $attributes);
 
         if (!array_key_exists('suffix', $groupOptions))
         {
             $groupOptions['suffix'] = $this->_theme->imagePreview(['url' => $filename]);
         }
 
-        return $this->uploadGroup($data, $attribute, $options, $groupOptions);
+        return $this->uploadGroup($data, $field, $attributes, $groupOptions);
     }    
 
-    public function uploadFile($data, $attribute, $filename = null, array $options = [])
+    public function uploadFile($data, $field, $filename = null, array $attributes = [])
     {
-        $options = HtmlHelper::mergeOptions($this->uploadFileOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->uploadFileAttributes, $attributes);
 
-        return $this->upload($data, $attribute, $options);
+        return $this->upload($data, $field, $attributes);
     }
 
-    public function uploadFileGroup($data, $attribute, $filename = null, array $options = [], $groupOptions = [])
+    public function uploadFileGroup($data, $field, $filename = null, array $attributes = [], $groupOptions = [])
     {
-        $options = HtmlHelper::mergeOptions($this->uploadFileOptions, $options);
+        $attributes = HtmlHelper::mergeAttributes($this->uploadFileAttributes, $attributes);
 
         if (!array_key_exists('suffix', $groupOptions))
         {
             $groupOptions['suffix'] = $this->_theme->filePreview(['url' => $filename]);
         }
 
-        return $this->uploadGroup($data, $attribute, $options, $groupOptions);
+        return $this->uploadGroup($data, $field, $attributes, $groupOptions);
     }
 
 }
