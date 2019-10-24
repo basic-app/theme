@@ -73,7 +73,7 @@ class TableDeleteLinkColumn extends TableColumn
         $deleteButton = $this->table->theme->postButton([
             'tag' => 'button',
             'content' => $label,
-            'options' => [
+            'attributes' => [
                 'type' => 'submit',
                 'class' => 'btn btn-primary',
                 'name' => 'delete'
