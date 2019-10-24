@@ -13,7 +13,7 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public $data = [];
 
-    public $attribute;
+    public $field;
 
     public $footerAttributes = [];
 
@@ -62,7 +62,7 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
             return $this->content;
         }
 
-        if ($this->data && $this->attribute)
+        if ($this->data && $this->field)
         {
             $data = $this->data;
 
@@ -74,13 +74,13 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
                 }
                 else
                 {
-                    return $data->{$this->attribute};
+                    return $data->{$this->field};
                 }
             }
 
-            if (array_key_exists($this->attribute, $data))
+            if (array_key_exists($this->field, $data))
             {
-                return $data[$this->attribute];     
+                return $data[$this->field];     
             }
         }
 
