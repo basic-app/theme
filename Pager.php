@@ -11,7 +11,7 @@ class Pager extends \PhpTheme\Core\Widget
 
     public $pager;
 
-    public function run()
+    public function toString() : string
     {
         return $this->render('pager', [
             'pager' => $this->pager

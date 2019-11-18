@@ -17,9 +17,9 @@ class PostButton extends \PhpTheme\Html\Tag
 
     public $tag = false;
 
-    public function render()
+    public function toString() : string
     {
-        $content = parent::render();
+        $content = parent::toString();
 
         $attributes = $this->formAttributes;
 
@@ -28,11 +28,6 @@ class PostButton extends \PhpTheme\Html\Tag
         $attributes['action'] = $this->url;
 
         return HtmlHelper::tag('form', $content, $attributes);
-    }
-
-    public function run()
-    {
-        return $this->render();
     }
 
 }

@@ -11,7 +11,7 @@ class FormFilePreview extends \PhpTheme\Core\Widget
 
     public $url;
 
-    public function run()
+    public function toString() : string
     {
         if (!$this->url)
         {

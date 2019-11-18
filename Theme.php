@@ -31,19 +31,6 @@ class Theme extends \PhpTheme\Core\BaseTheme
 
     public $filePreviewOptions = [];
 
-    public function __construct()
-    {
-    }
-
-    public function postButton(array $options = [])
-    {
-        $options = HtmlHelper::mergeOptions($this->postButtonOptions, $options);
-
-        $class = static::POST_BUTTON;
-
-        return $class::factory($options)->render();
-    }
-
     public function createForm(object $model, array $errors = [])
     {
         $class = static::FORM;
@@ -72,6 +59,13 @@ class Theme extends \PhpTheme\Core\BaseTheme
         $options = HtmlHelper::mergeOptions($this->filePreviewOptions, $options);
 
         return $this->widget(static::FILE_PREVIEW, $options);
+    }
+
+    public function postButton(array $options = [])
+    {
+        $options = HtmlHelper::mergeOptions($this->postButtonOptions, $options);
+
+        return $this->widget(static::POST_BUTTON, $options);
     }
 
 }
