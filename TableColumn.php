@@ -34,6 +34,8 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
         ]
     ];
 
+    public $escapeContent = true;
+
     public function number($attributes = [])
     {
         $this->attributes = HtmlHelper::mergeAttributes($this->numberAttributes, $attributes);
@@ -57,34 +59,50 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public function getContent()
     {
+        $return = null;
+
         if ($this->content)
         {
-            return $this->content;
+            $return = $this->content;
         }
-
-        if ($this->data && $this->field)
+        else
         {
-            $data = $this->data;
-
-            if (is_object($data))
+            if ($this->data && $this->field)
             {
-                if (method_exists($data, 'toArray'))
+                $data = $this->data;
+
+                if (is_object($data))
                 {
-                    $data = $data->toArray();
+                    if (method_exists($data, 'toArray'))
+                    {
+                        $data = $data->toArray();
+
+                        if (array_key_exists($this->field, $data))
+                        {
+                            $return = $data[$this->field];     
+                        }
+                    }
+                    else
+                    {
+                        $return = $data->{$this->field};
+                    }
                 }
                 else
                 {
-                    return $data->{$this->field};
+                    if (array_key_exists($this->field, $data))
+                    {
+                        $return = $data[$this->field];     
+                    }
                 }
-            }
-
-            if (array_key_exists($this->field, $data))
-            {
-                return $data[$this->field];     
             }
         }
 
-        return null;
+        if ($return && $this->escapeContent)
+        {
+            $return = HtmlHelper::escape($return);
+        }
+
+        return $return;
     }
 
 }
