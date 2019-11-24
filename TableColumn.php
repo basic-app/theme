@@ -20,11 +20,11 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
     public $headerAttributes = [];
 
     public $successAttributes = [
-        'class' => 'process'
+        'class' => ['process']
     ];
 
     public $errorAttributes = [
-        'class' => 'denied'
+        'class' => ['denied']
     ];
 
     public $numberAttributes = [
@@ -38,21 +38,21 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
     public function number($attributes = [])
     {
-        $this->attributes = HtmlHelper::mergeAttributes($this->numberAttributes, $attributes);
+        $this->attributes = HtmlHelper::mergeAttributes($this->attributes, $this->numberAttributes, $attributes);
 
         return $this;
     }
 
     public function success($attributes = [])
     {
-        $this->attributes = HtmlHelper::mergeAttributes($this->successAttributes, $attributes);
+        $this->attributes = HtmlHelper::mergeAttributes($this->attributes, $this->successAttributes, $attributes);
 
         return $this;
     }
 
     public function error($attributes = [])
     {
-        $this->attributes = HtmlHelper::mergeAttributes($this->errorAttributes, $attributes);
+        $this->attributes = HtmlHelper::mergeAttributes($this->attributes, $this->errorAttributes, $attributes);
 
         return $this;
     }
