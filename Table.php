@@ -6,13 +6,16 @@
  */
 namespace BasicApp\Theme;
 
+use PhpTheme\Core\Theme;
 use PhpTheme\Html\HtmlHelper;
+use PhpTheme\Html\BaseTable;
+use PhpTheme\Core\ThemeWidgetInterface;
 use BasicApp\Theme\TableUpdateLinkColumn;
 use BasicApp\Theme\TableDeleteLinkColumn;
 use BasicApp\Theme\TableBooleanColumn;
 use BasicApp\Theme\TableLinkColumn;
 
-class Table extends \PhpTheme\Html\BaseTable
+class Table extends BaseTable implements ThemeWidgetInterface
 {
 
     const COLUMN = TableColumn::class;
@@ -24,6 +27,8 @@ class Table extends \PhpTheme\Html\BaseTable
     const DELETE_LINK_COLUMN = TableDeleteLinkColumn::class;
 
     const BOOLEAN_COLUMN = TableBooleanColumn::class;
+
+    protected $theme;
 
     public $labels = [];
 
@@ -82,6 +87,13 @@ class Table extends \PhpTheme\Html\BaseTable
             ]
         ]
     ];
+
+    public function __construct(Theme $theme, array $params = [])
+    {
+        $this->theme = $theme;
+
+        parent::__construct($params);
+    }
 
     public function createBooleanColumn(array $options = [])
     {
