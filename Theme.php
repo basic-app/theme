@@ -13,6 +13,16 @@ use BasicApp\Theme\Form;
 class Theme extends \PhpTheme\Core\BaseTheme
 {
 
+    public $baseUrl = '';
+
+    public $head = '';
+
+    public $beginBody = '';
+
+    public $endBody = '';
+
+    public $lang = 'en';
+
     const PAGER = Pager::class;
 
     const FORM = Form::class;
