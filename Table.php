@@ -30,6 +30,8 @@ class Table extends BaseTable implements ThemeWidgetInterface
 
     protected $theme;
 
+    public $bodyRows;
+
     public $labels = [];
 
     public $elements = [];
@@ -157,32 +159,39 @@ class Table extends BaseTable implements ThemeWidgetInterface
 
     public function createBody(array $params = [])
     {   
-        if ($this->elements)
+        if (is_array($this->bodyRows))
         {
-            foreach($this->elements as $data)
+            $params['rows'] = $this->bodyRows;
+        }
+        else
+        {
+            if ($this->elements)
             {
-                $columnFunction = $this->columns;
-
-                $columnFunction = $columnFunction->bindTo($this);
-
-                $columns = $columnFunction($data);
-
-                foreach($columns as $key => $column)
+                foreach($this->elements as $data)
                 {
-                    $column->data = $data;
+                    $columnFunction = $this->columns;
 
-                    if (!array_key_exists($key, $this->headerColumnAttributes) && $column->headerAttributes)
+                    $columnFunction = $columnFunction->bindTo($this);
+
+                    $columns = $columnFunction($data);
+
+                    foreach($columns as $key => $column)
                     {
-                        $this->headerColumnAttributes[$key] = $column->headerAttributes;
+                        $column->data = $data;
+
+                        if (!array_key_exists($key, $this->headerColumnAttributes) && $column->headerAttributes)
+                        {
+                            $this->headerColumnAttributes[$key] = $column->headerAttributes;
+                        }
+
+                        if (!array_key_exists($key, $this->footerColumnAttributes) && $column->footerAttributes)
+                        {
+                            $this->footerColumnAttributes[$key] = $column->footerAttributes;
+                        }
                     }
 
-                    if (!array_key_exists($key, $this->footerColumnAttributes) && $column->footerAttributes)
-                    {
-                        $this->footerColumnAttributes[$key] = $column->footerAttributes;
-                    }
+                    $params['rows'][] = ['columns' => $columns];
                 }
-
-                $params['rows'][] = ['columns' => $columns];
             }
         }
         
