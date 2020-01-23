@@ -8,7 +8,7 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Html\HtmlHelper;
 
-class PostButton extends \PhpTheme\Html\Tag
+class PostButton extends \PhpTheme\Core\Tag
 {
 
     public $formAttributes = [];
