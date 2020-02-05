@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Html\HtmlHelper;
+use PhpTheme\Core\HtmlHelper;
 
 class TableColumn extends \PhpTheme\Html\BaseTableColumn
 {

@@ -6,11 +6,9 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Html\HtmlHelper;
-use BasicApp\Theme\PostButton;
-use BasicApp\Theme\Form;
+use PhpTheme\Core\HtmlHelper;
 
-class Theme extends \PhpTheme\Core\BaseTheme
+class Theme extends \PhpTheme\Core\Theme
 {
 
     public $baseUrl = '';

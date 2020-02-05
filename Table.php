@@ -7,15 +7,10 @@
 namespace BasicApp\Theme;
 
 use PhpTheme\Core\Theme;
-use PhpTheme\Html\HtmlHelper;
+use PhpTheme\Core\HtmlHelper;
 use PhpTheme\Html\BaseTable;
-use PhpTheme\Core\WidgetInterface;
-use BasicApp\Theme\TableUpdateLinkColumn;
-use BasicApp\Theme\TableDeleteLinkColumn;
-use BasicApp\Theme\TableBooleanColumn;
-use BasicApp\Theme\TableLinkColumn;
 
-class Table extends BaseTable implements WidgetInterface
+class Table extends BaseTable
 {
 
     const COLUMN = TableColumn::class;

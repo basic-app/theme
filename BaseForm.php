@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Html\HtmlHelper;
+use PhpTheme\Core\HtmlHelper;
 use BasicApp\Helpers\ArrayHelper;
 
 abstract class BaseForm extends \BasicApp\Core\Form
