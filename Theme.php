@@ -8,7 +8,7 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Core\HtmlHelper;
 
-class Theme extends \PhpTheme\Core\Theme
+class Theme extends \PhpTheme\Theme\Theme
 {
 
     public $baseUrl = '';
