@@ -9,13 +9,13 @@ namespace BasicApp\Theme;
 use PhpTheme\Core\Theme;
 use PhpTheme\Html\HtmlHelper;
 use PhpTheme\Html\BaseTable;
-use PhpTheme\Core\ThemeWidgetInterface;
+use PhpTheme\Core\WidgetInterface;
 use BasicApp\Theme\TableUpdateLinkColumn;
 use BasicApp\Theme\TableDeleteLinkColumn;
 use BasicApp\Theme\TableBooleanColumn;
 use BasicApp\Theme\TableLinkColumn;
 
-class Table extends BaseTable implements ThemeWidgetInterface
+class Table extends BaseTable implements WidgetInterface
 {
 
     const COLUMN = TableColumn::class;

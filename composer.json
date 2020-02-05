@@ -11,8 +11,8 @@
         ]
     },
     "require": {
-        "basic-app/core" : "dev-master",
-        "phptheme/core" : "dev-master",
-        "phptheme/html": "dev-master"
+        "basic-app/core" : "*",
+        "phptheme/core" : "*",
+        "phptheme/html": "*"
     }
 }
