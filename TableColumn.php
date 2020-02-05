@@ -7,6 +7,7 @@
 namespace BasicApp\Theme;
 
 use PhpTheme\Core\HtmlHelper;
+use PhpTheme\Core\HtmlEscaper;
 
 class TableColumn extends \PhpTheme\Html\BaseTableColumn
 {
@@ -99,7 +100,7 @@ class TableColumn extends \PhpTheme\Html\BaseTableColumn
 
         if ($return && $this->escapeContent)
         {
-            $return = HtmlHelper::escape($return);
+            $return = HtmlEscaper::encode($return);
         }
 
         return $return;

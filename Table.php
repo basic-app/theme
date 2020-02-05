@@ -85,13 +85,6 @@ class Table extends BaseTable
         ]
     ];
 
-    public function __construct(Theme $theme, array $params = [])
-    {
-        $this->theme = $theme;
-
-        parent::__construct($params);
-    }
-
     public function createBooleanColumn(array $options = [])
     {
         $options = HtmlHelper::mergeOptions($this->booleanColumnOptions, $options);
