@@ -4,7 +4,7 @@
  * @license MIT
  * @link http://basic-app.com
  */
-namespace PhpTheme\Html;
+namespace PhpTheme\Core;
 
 class TableColumn extends \BasicApp\Theme\TableColumn
 {
