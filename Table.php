@@ -6,7 +6,6 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Core\Theme;
 use PhpTheme\Core\HtmlHelper;
 
 class Table extends \PhpTheme\Table\Table
