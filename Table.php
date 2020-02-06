@@ -8,9 +8,8 @@ namespace BasicApp\Theme;
 
 use PhpTheme\Core\Theme;
 use PhpTheme\Core\HtmlHelper;
-use PhpTheme\Html\BaseTable;
 
-class Table extends BaseTable
+class Table extends \PhpTheme\Table\Table
 {
 
     const COLUMN = TableColumn::class;
