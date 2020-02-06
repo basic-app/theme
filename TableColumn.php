@@ -9,7 +9,7 @@ namespace BasicApp\Theme;
 use PhpTheme\Core\HtmlHelper;
 use PhpTheme\Core\HtmlEscaper;
 
-class TableColumn extends \PhpTheme\Html\BaseTableColumn
+class TableColumn extends \PhpTheme\Bootstrap4\TableColumn
 {
 
     public $data = [];
