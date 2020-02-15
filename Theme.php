@@ -23,8 +23,6 @@ class Theme extends \PhpTheme\Theme\Theme
 
     const FORM = Form::class;
 
-    const POST_BUTTON = PostButton::class;
-
     const IMAGE_PREVIEW = FormImagePreview::class;
 
     const FILE_PREVIEW = FormFilePreview::class;
@@ -57,11 +55,6 @@ class Theme extends \PhpTheme\Theme\Theme
     public function filePreview(array $options = [])
     {
         return $this->widget(static::FILE_PREVIEW, $options);
-    }
-
-    public function postButton(array $options = [])
-    {
-        return $this->widget(static::POST_BUTTON, $options);
     }
 
     public function gridCellButtonDelete(array $options = [])

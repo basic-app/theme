@@ -8,4 +8,14 @@ namespace BasicApp\Theme;
 
 class GridCellButtonUpdate extends \PhpTheme\Themes\Bootstrap4\GridCellButton
 {
+
+    public $icon = 'fa fa-edit';
+
+    public $label;
+
+    protected function getLabel()
+    {
+        return $this->label ?? t('theme', 'Update');
+    }
+    
 }
