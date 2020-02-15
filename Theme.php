@@ -6,8 +6,6 @@
  */
 namespace BasicApp\Theme;
 
-use PhpTheme\Core\HtmlHelper;
-
 class Theme extends \PhpTheme\Theme\Theme
 {
 
@@ -31,13 +29,11 @@ class Theme extends \PhpTheme\Theme\Theme
 
     const FILE_PREVIEW = FormFilePreview::class;
 
-    public $postButtonOptions = [];
+    const GRID_CELL_BUTTON_DELETE = GridCellButtonDelete::class;
 
-    public $pagerOptions = [];
+    const GRID_CELL_BUTTON_UPDATE = GridCellButtonUpdate::class;
 
-    public $imagePreviewOptions = [];
-
-    public $filePreviewOptions = [];
+    const GRID_CELL_BUTTON_BOOLEAN = GridCellButtonBoolean::class;
 
     public function createForm(object $model, array $errors = [])
     {
@@ -50,30 +46,32 @@ class Theme extends \PhpTheme\Theme\Theme
 
     public function pager(array $options = [])
     {
-        $options = HtmlHelper::mergeOptions($this->pagerOptions, $options);
-
         return $this->widget(static::PAGER, $options);
     }
 
     public function imagePreview(array $options = [])
     {
-        $options = HtmlHelper::mergeOptions($this->imagePreviewOptions, $options);
-
         return $this->widget(static::IMAGE_PREVIEW, $options);
     }
 
     public function filePreview(array $options = [])
     {
-        $options = HtmlHelper::mergeOptions($this->filePreviewOptions, $options);
-
         return $this->widget(static::FILE_PREVIEW, $options);
     }
 
     public function postButton(array $options = [])
     {
-        $options = HtmlHelper::mergeOptions($this->postButtonOptions, $options);
-
         return $this->widget(static::POST_BUTTON, $options);
+    }
+
+    public function gridCellButtonDelete(array $options = [])
+    {
+        return $this->widget(static::GRID_CELL_BUTTON_DELETE, $options);
+    }
+
+    public function gridCellButtonUpdate(array $options = [])
+    {
+        return $this->widget(static::GRID_CELL_BUTTON_UPDATE, $options);
     }
 
 }

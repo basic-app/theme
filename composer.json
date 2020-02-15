@@ -5,14 +5,13 @@
             "BasicApp\\Theme\\": ""
         },
         "files": [
-            "_autoload/Theme.php",
-            "_autoload/TableColumn.php",
-            "_autoload/Table.php"
+            "_autoload/Theme.php"
         ]
     },
     "require": {
-        "basic-app/core" : "*",
-        "phptheme/core" : "*",
-        "phptheme/html": "*"
+        "basic-app/core": "*",
+        "phptheme/theme-bootstrap4": "*",
+        "phptheme/core": "*",
+        "phptheme/theme": "*"
     }
 }
