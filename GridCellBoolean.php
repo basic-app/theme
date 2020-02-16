@@ -6,7 +6,7 @@
  */
 namespace BasicApp\Theme;
 
-class GridCellButtonBoolean extends \PhpTheme\Themes\Bootstrap4\GridCellButtonBoolean
+class GridCellBoolean extends \PhpTheme\Themes\Bootstrap4\GridCellBoolean
 {
 
     public $yesLabel = null;

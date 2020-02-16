@@ -31,7 +31,13 @@ class Theme extends \PhpTheme\Theme\Theme
 
     const GRID_CELL_BUTTON_UPDATE = GridCellButtonUpdate::class;
 
-    const GRID_CELL_BUTTON_BOOLEAN = GridCellButtonBoolean::class;
+    const GRID_CELL_BOOLEAN = GridCellBoolean::class;
+
+    const GRID_HEADER_BUTTON_DELETE = GridHeaderButtonDelete::class;
+
+    const GRID_HEADER_BUTTON_UPDATE = GridHeaderButtonUpdate::class;
+
+    const GRID_HEADER_BOOLEAN = GridHeaderBoolean::class;
 
     public function createForm(object $model, array $errors = [])
     {
