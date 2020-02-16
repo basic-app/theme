@@ -8,4 +8,7 @@ namespace BasicApp\Theme;
 
 class GridHeaderBoolean extends \PhpTheme\Themes\Bootstrap4\GridHeaderBoolean
 {
+
+    const GRID_CELL = GridCellBoolean::class;
+
 }

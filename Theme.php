@@ -63,6 +63,11 @@ class Theme extends \PhpTheme\Theme\Theme
         return $this->widget(static::FILE_PREVIEW, $options);
     }
 
+    public function grid(array $options = [])
+    {
+        return $this->widget(static::GRID, array_merge($options, ['theme' => $this]));
+    }    
+
     public function gridCellButtonDelete(array $options = [])
     {
         return $this->widget(static::GRID_CELL_BUTTON_DELETE, $options);

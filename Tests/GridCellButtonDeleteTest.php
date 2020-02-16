@@ -7,7 +7,7 @@
 namespace BasicApp\Theme\Tests;
 
 use BasicApp\Theme\GridCellButtonDelete;
-use PhpTheme\Grid\Grid;
+use PhpTheme\Themes\Bootstrap4\Grid;
 
 class GridCellButtonDeleteTest extends \PHPUnit\Framework\TestCase
 {
@@ -24,12 +24,10 @@ class GridCellButtonDeleteTest extends \PHPUnit\Framework\TestCase
         $content = $cell->toString();
 
         $this->assertEquals($content, '<td>' 
-            . '<form method="POST" action="#">' 
-                . '<button type="submit" title="Delete">' 
+                . '<a style="color: #ff0000;" href="#" data-toggle="modal" data-target="#delete-button-1" title="Delete">' 
                     . '<i class="fa fa-times-circle"></i>' 
-                . '</button>' 
-            . '</form>' 
-        . '</td>');
+                . '</a>' 
+            . '</td>');
     }
 
 }

@@ -62,25 +62,30 @@ class GridCellButtonDelete extends \PhpTheme\Themes\Bootstrap4\GridCellButton
     {
         $this->id = $this->getId();
 
-        $deleteButton = $this->getGrid()->getTheme()->postLink([
-            'tag' => 'button',
-            'attributes' => [
-                'type' => 'submit',
-                'class' => 'btn btn-danger',
-                'name' => 'delete'
-            ],
-            'url' => $this->getUrl(),
-            'label' => $this->getLabel()
-        ]);
+        $theme = $this->getGrid()->getTheme();
 
-        $popup = $this->getGrid()->getTheme()->popup([
-            'id' => $this->id,
-            'title' => $this->getLabel(),
-            'content' => '<p>' . $this->getConfirmMessage() . '</p>',
-            'footer' => $deleteButton
-        ]);
+        if ($theme)
+        {
+            $deleteButton = $theme->postLink([
+                'tag' => 'button',
+                'attributes' => [
+                    'type' => 'submit',
+                    'class' => 'btn btn-danger',
+                    'name' => 'delete'
+                ],
+                'url' => $this->getUrl(),
+                'label' => $this->getLabel()
+            ]);
 
-        $this->getGrid()->getTheme()->endBody .= $popup;
+            $popup = $theme->popup([
+                'id' => $this->id,
+                'title' => $this->getLabel(),
+                'content' => '<p>' . $this->getConfirmMessage() . '</p>',
+                'footer' => $deleteButton
+            ]);
+
+            $theme->endBody .= $popup;
+        }
 
         return parent::toString();
     }
