@@ -74,4 +74,29 @@ class Theme extends \PhpTheme\Theme\Theme
         return $this->widget(static::GRID_CELL_BUTTON_UPDATE, $options);
     }
 
+    public function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    public function getHead()
+    {
+        return $this->head;
+    }
+
+    public function beginBody()
+    {
+        return $this->beginBody;
+    }
+
+    public function endBody()
+    {
+        return $this->endBody;
+    }
+
 }
