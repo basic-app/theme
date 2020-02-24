@@ -35,6 +35,25 @@ class Theme extends \PhpTheme\Theme\Theme
 
     const GRID_HEADER_BUTTON_UPDATE = GridHeaderButtonUpdate::class;
 
+    public $copyright = '&copy; Copyright {year}.';
+
+    public $poweredBy = 'Powered by <a href="http://basic-app.com" target="_blank">Basic App</a>';
+
+    public function getCopyright($copyright = '')
+    {
+        if (!$copyright)
+        {
+            $copyright = $this->copyright;
+        }
+
+        if ($this->poweredBy)
+        {
+            $copyright .= ' ' . $this->poweredBy;
+        }
+
+        return strtr($copyright, ['{year}' => date('Y')]);
+    }
+
     public function createForm(object $model, array $errors = [])
     {
         $class = static::FORM;
