@@ -39,6 +39,13 @@ class Theme extends \PhpTheme\Theme\Theme
 
     public $poweredBy = 'Powered by <a href="http://basic-app.com" target="_blank">Basic App</a>';
 
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->lang = service('request')->getLocale();
+    }
+
     public function getCopyright($copyright = '')
     {
         if (!$copyright)
