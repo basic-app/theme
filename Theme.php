@@ -61,11 +61,11 @@ class Theme extends \PhpTheme\Theme\Theme
         return strtr($copyright, ['{year}' => date('Y')]);
     }
 
-    public function createForm(object $model, array $errors = [])
+    public function createForm(object $model)
     {
         $class = static::FORM;
 
-        $form = new $class($model, $errors, $this);
+        $form = new $class($model, $this);
 
         return $form;
     }

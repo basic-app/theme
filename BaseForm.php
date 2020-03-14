@@ -22,16 +22,16 @@ abstract class BaseForm extends \BasicApp\Core\Form
 
     protected $_theme;
 
-    public function __construct($model, $errors, $theme)
+    public function __construct($model, $theme)
     {
-        parent::__construct($model, $errors);
+        parent::__construct($model);
 
         $this->_theme = $theme;
     }
 
-    protected function _getFieldLabel($data, $field)
+    public function getFieldLabel(string $field, array $attributes = [])
     {
-        return $this->_model->getfieldLabel($field, parent::_getFieldLabel($data, $field));
+        return $this->getModel()->getFieldLabel($field);
     }
 
     public function editorTextarea($data, $field, array $attributes = [])
