@@ -37,7 +37,7 @@ class Theme extends \PhpTheme\Theme\Theme
 
     public $copyright = '&copy; Copyright {year}.';
 
-    public $poweredBy = 'Powered by <a href="http://basic-app.com" target="_blank">Basic App</a>';
+    public $poweredBy = 'Powered by <a href="http://basic-app.com" target="_blank">Basic App</a>.';
 
     public function __construct()
     {
