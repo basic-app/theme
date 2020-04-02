@@ -45,7 +45,23 @@ class Theme extends \PhpTheme\Theme\Theme
 
         $this->lang = service('request')->getLocale();
 
-        $this->baseUrl = base_url();
+        if ($this->baseUrl)
+        {
+            $first_symbol = mb_substr($this->baseUrl, 0, 1);
+
+            if ($first_symbol == '/')
+            {
+                $this->baseUrl = base_url() . $this->baseUrl;
+            }
+            else
+            {
+                $this->baseUrl = base_url() . '';
+            }
+        }
+        else
+        {
+            $this->baseUrl = base_url();
+        }
     }
 
     public function getCopyright($copyright = '')
