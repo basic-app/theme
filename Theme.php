@@ -9,7 +9,7 @@ namespace BasicApp\Theme;
 class Theme extends \PhpTheme\Theme\Theme
 {
 
-    public $baseUrl = '';
+    public $baseUrl;
 
     public $head = '';
 
@@ -44,6 +44,8 @@ class Theme extends \PhpTheme\Theme\Theme
         parent::__construct();
 
         $this->lang = service('request')->getLocale();
+
+        $this->baseUrl = base_url();
     }
 
     public function getCopyright($copyright = '')
