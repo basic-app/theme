@@ -12,7 +12,7 @@ abstract class BaseTheme
 
     public function __construct(array $options = [])
     {
-        foreach($this->options as $key => $value)
+        foreach($options as $key => $value)
         {
             $this->$key = $value;
         }
