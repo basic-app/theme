@@ -5,9 +5,6 @@
  */
 namespace BasicApp\Theme\Cells;
 
-use CodeIgniter\View\Cells\Cell;
-
-abstract class BaseFormCheckbox extends Cell
+abstract class BaseFormCheckbox extends BaseFormInputCell
 {
-    public array $attributes = [];
 }

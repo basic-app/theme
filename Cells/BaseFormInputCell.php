@@ -7,9 +7,11 @@ namespace BasicApp\Theme\Cells;
 
 use CodeIgniter\View\Cells\Cell;
 
-abstract class BaseFormLabel extends Cell
+abstract class BaseFormInputCell extends Cell
 {
     public array $attributes = [];
 
-    public $slot;
+    public $label;
+
+    public $error;
 }

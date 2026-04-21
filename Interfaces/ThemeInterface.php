@@ -42,10 +42,28 @@ interface ThemeInterface
     public function formRadio(array $params = []) : string;
     
     public function formLabel(array $params = []) : string;
+
+    public function formError(array $params = []) : string;
     
     public function formSubmit(array $params = []) : string;
     
     public function formReset(array $params = []) : string;
     
     public function formButton(array $params = []) : string;
+
+    public function alertPrimary(array $params = []) : string;
+
+    public function alertSecondary(array $params = []) : string;
+
+    public function alertSuccess(array $params = []) : string;
+
+    public function alertDanger(array $params = []) : string;
+
+    public function alertWarning(array $params = []) : string;
+
+    public function alertInfo(array $params = []) : string;
+
+    public function alertLight(array $params = []) : string;
+
+    public function alertDark(array $params = []) : string;
 }

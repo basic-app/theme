@@ -99,6 +99,11 @@ class Theme implements ThemeInterface
         return view_cell('FormLabel', $params);
     }
 
+    public function formError(array $params = []) : string
+    {
+        return view_cell('FormError', $params);
+    }
+
     public function formSubmit(array $params = []) : string
     {
         return view_cell('FormSubmit', $params);
@@ -112,5 +117,45 @@ class Theme implements ThemeInterface
     public function formButton(array $params = []) : string
     {
         return view_cell('FormButton', $params);
+    }
+
+    public function alertPrimary(array $params = []) : string
+    {
+        return view_cell('AlertPrimary', $params);
+    }
+
+    public function alertSecondary(array $params = []) : string
+    {
+        return view_cell('AlertSecondary', $params);
+    }
+
+    public function alertSuccess(array $params = []) : string
+    {
+        return view_cell('AlertSuccess', $params);
+    }
+
+    public function alertDanger(array $params = []) : string
+    {
+        return view_cell('AlertDanger', $params);
+    }
+
+    public function alertWarning(array $params = []) : string
+    {
+        return view_cell('AlertWarning', $params);
+    }
+
+    public function alertInfo(array $params = []) : string
+    {
+        return view_cell('AlertInfo', $params);
+    }
+
+    public function alertLight(array $params = []) : string
+    {
+        return view_cell('AlertLight', $params);
+    }
+
+    public function alertDark(array $params = []) : string
+    {
+        return view_cell('AlertDark', $params);
     }
 }

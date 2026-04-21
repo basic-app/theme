@@ -5,9 +5,6 @@
  */
 namespace BasicApp\Theme\Cells;
 
-use CodeIgniter\View\Cells\Cell;
-
-abstract class BaseFormMultiselect extends Cell
+abstract class BaseFormMultiselect extends BaseFormInputCell
 {
-    public array $attributes = [];
 }

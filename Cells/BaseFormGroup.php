@@ -13,9 +13,13 @@ abstract class BaseFormGroup extends Cell
 
     public $slot;
 
-    public array $error = [];
+    public ?string $error = null;
 
-    public array $label = [];
+    public array $errorAttributes = [];
+
+    public ?string $label = null;
+
+    public array $labelAttributes = [];
 
     public $class;
 }

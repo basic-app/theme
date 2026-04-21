@@ -11,11 +11,11 @@ abstract class BaseGroupCell extends Cell
 {
     public array $attributes = [];
 
-    public array $label;
+    public ?string $label = null;
 
     public array $labelAttributes = [];
 
-    public array $error;
+    public ?string $error = null;
 
     public array $errorAttributes = [];
 }

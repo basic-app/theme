@@ -5,9 +5,6 @@
  */
 namespace BasicApp\Theme\Cells;
 
-use CodeIgniter\View\Cells\Cell;
-
-abstract class BaseFormDropdown extends Cell
+abstract class BaseFormDropdown extends BaseFormInputCell
 {
-    public array $attributes = [];
 }

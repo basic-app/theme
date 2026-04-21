@@ -5,9 +5,6 @@
  */
 namespace BasicApp\Theme\Cells;
 
-use CodeIgniter\View\Cells\Cell;
-
-abstract class BaseFormUpload extends Cell
+abstract class BaseFormUpload extends BaseFormInputCell
 {
-    public array $attributes = [];
 }

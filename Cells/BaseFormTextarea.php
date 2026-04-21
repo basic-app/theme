@@ -5,9 +5,6 @@
  */
 namespace BasicApp\Theme\Cells;
 
-use CodeIgniter\View\Cells\Cell;
-
-abstract class BaseFormTextarea extends Cell
+abstract class BaseFormTextarea extends BaseFormInputCell
 {
-    public array $attributes = [];
 }

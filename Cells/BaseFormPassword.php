@@ -5,9 +5,6 @@
  */
 namespace BasicApp\Theme\Cells;
 
-use CodeIgniter\View\Cells\Cell;
-
-abstract class BaseFormPassword extends Cell
+abstract class BaseFormPassword extends BaseFormInputCell
 {
-    public array $attributes = [];
 }
