@@ -1,0 +1,1 @@
+<<?= $tag . stringify_attributes($attributes);?>><?= $slot;?></<?= $tag;?>>
