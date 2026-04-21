@@ -3,7 +3,7 @@
  * @author Basic App Dev Team
  * @license MIT
  */
-namespace BasicApp\SiteTheme\Cells;
+namespace BasicApp\Theme\Cells;
 
 abstract class BaseFormCheckboxGroup extends BaseGroupCell
 {

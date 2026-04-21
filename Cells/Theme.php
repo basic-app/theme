@@ -14,7 +14,7 @@ class Theme implements ThemeInterface
         return view_cell('Tag', $params);
     }
 
-    public function formGroup() : string
+    public function formGroup(array $params = []) : string
     {
         return view_cell('FormGroup', $params);
     }
