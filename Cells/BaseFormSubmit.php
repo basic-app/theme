@@ -7,15 +7,7 @@ namespace BasicApp\SiteTheme\Cells;
 
 use CodeIgniter\View\Cells\Cell;
 
-abstract class BaseFormGroup extends Cell
+abstract class BaseFormSubmit extends Cell
 {
     public array $attributes = [];
-
-    public $slot;
-
-    public array $error = [];
-
-    public array $label = [];
-
-    public $class;
 }
